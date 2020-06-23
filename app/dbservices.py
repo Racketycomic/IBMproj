@@ -24,16 +24,15 @@ class crud():
         client = c.connection()
         database_name = "candidate_features"
         my_database = client[database_name]
-
         try:
             my_document = my_database.create_document(args)
-            print("User inserted")
+            return print("User inserted")
         except:
-            print("Insertion failed")
+            return print("Insertion failed")
 
-    def search_feature(self,args):
+    def search_feature(self, args, database_name):
 
-        client=c.connection()
-        database_name = "candidate_features"
+        client = c.connection()
         my_database = client[database_name]
         my_document = my_database[args]
+        return my_document
