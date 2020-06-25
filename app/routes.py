@@ -6,6 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 
 db = crud()
+wh =watsonhandler()
 @app.route('/')
 @app.route('/index',methods=['POST','GET'])
 def index():
@@ -53,11 +54,19 @@ def register():
                 return redirect('/login')
     return render_template('register.html')
 
-@app.route('/interaction')
+@app.route('/interaction',methods=['POST','GET'])
 def interaction():
-    return("Hello")
-
-
+    fin = ''
+    [whs_id, assistant, msg] = wh.get_session_id()
+    for key1, value1 in msg.items():
+        if key1 == 'output':
+            for key2, value2 in value1.items():
+                if key2 == 'generic':
+                    for i in value2:
+                        for key3, value3 in i.items():
+                            if key3 == 'text':
+                                fin = value3
+    return render_template('interaction.html', fin = fin)
 
 @app.route('/logout')
 def logout():
