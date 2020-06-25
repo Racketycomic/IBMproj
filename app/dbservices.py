@@ -6,7 +6,7 @@ from flask import config,current_app
 
 class dbservice():
     def connection(self):
-        client = Cloudant(current_app.config['USERNAME'], current_app.config["PASSWORD"], url=current_app.config["URL"])
+        client = Cloudant(current_app.config['DB_USERNAME'], current_app.config["DB_PASSWORD"], url=current_app.config["DB_URL"])
         try:
             client.connect()
             print("Connection succesfull")
@@ -20,19 +20,27 @@ c = dbservice()
 
 class crud():
 
-    def insert_feature(self, args):
+    def insert_feature(self, candict, database_name):
+        c = dbservice()
         client = c.connection()
-        database_name = "candidate_features"
         my_database = client[database_name]
         try:
-            my_document = my_database.create_document(args)
-            return print("User inserted")
+            my_document = my_database.create_document(candict)
+            my_document.save()
+            print("User inserted")
         except:
-            return print("Insertion failed")
+            print("Insertion failed")
 
-    def search_feature(self, args, database_name):
-
+    def search_feature(self, key, database_name):
+        c = dbservice()
         client = c.connection()
         my_database = client[database_name]
-        my_document = my_database[args]
-        return my_document
+        result = Result(my_database.all_docs, include_docs=True)
+        my_document = result[ResultByKey(key)]
+        if len(my_document)!=0:
+            for key, value in my_document[0].items():
+                if key == 'doc':
+                    doc = value
+            return doc
+        else:
+            return my_document
