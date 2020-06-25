@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form class="" action="/register" method="post">
+      <div class="">
+        <input type="text" name="username" placeholder="Enter the name" required>
+      </div>
+      <div class="">
+          <input type="email" name="email" placeholder="Enter the email" required>
+      </div>
+      <div class="">
+          <input type="password" name="password" placeholder="Enter the password" required>
+      </div>
+      <div class="">
+            <input type="password" name="repass" placeholder="Re-enter the password" required>
+      </div>
+
+    <div class="">
+        <input type="submit" placeholder="Register">
+    </div>
+
+
+
+    </form>
+    {% if error %}
+    <div> {{error}} <div>
+      {% endif %}
+
+  </body>
+</html>

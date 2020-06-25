@@ -19,7 +19,7 @@ credentials = {
 client = Cloudant(credentials["username"], credentials["password"], url=credentials["url"])
 client.connect()
 
-database_name = "candidate_features"
+database_name = "login_credentials"
 my_database = client.create_database(database_name)
 
 user = {'name': 'Jatin Rajpal 2',
@@ -43,11 +43,21 @@ user = {'name': 'Jatin Rajpal 2',
                        'Computer Networks', 'Operating Systems', 'Linear Algebra'],
                     'company_names': None, 'no_of_pages': 1, 'total_experience': 0.0}
 
-my_database = client['candidate_features']
+my_database = client['login_credentials']
 
+print(my_database)
+
+result = Result(my_database.all_docs,include_docs=True)
+print(result)
+for i in result:
+    print(i)
+result[ResultByKey('wanto@wait.com')]
+
+user={'_id':'wanto@wait.com','username':'wanton','passsword':'wanton@123','email':'wanton@wait.com'}
 my_document = my_database.create_document(user)
 
 my_document = my_database['Jatin Rajpal']
+
 my_document['email'] = "newemail@emailer.com"
 print(my_document)
 my_document.save()

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form class="" action="/login" method="post">
+      <div class="">
+          <input type="email" name="email" placeholder="Enter the email" required>
+      </div>
+      <div class="">
+
+          <input type="password" name="password" placeholder="Enter the password" required>
+      </div>
+      <div class="">
+          <input type="submit">
+      </div>
+
+    </form>
+    {% if error %}
+    <div> {{error}} <div>
+      {% endif %}
+      <div class="">
+      <a href="{{url_for('register')}}">  <button type="submit" name="login" > Register </button> </a>
+      </div>
+  </body>
+</html>
