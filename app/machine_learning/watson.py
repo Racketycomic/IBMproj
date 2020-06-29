@@ -17,7 +17,7 @@ class watsonhandler():
         ).get_result()
         print(json.dumps(response, indent=2))
         session_id = response['session_id']
-        return [session_id, assistant, response]
+        return [session_id, assistant]
 
     def watson_request(self, session_id, assistant,text):
         msg = assistant.message(

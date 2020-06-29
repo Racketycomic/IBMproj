@@ -1,12 +1,14 @@
-from flask import redirect, render_template, session, request
+from flask import redirect, render_template, session, request,logging
 from app.dbservices import crud
 from app import app
 from app.machine_learning.watson import watsonhandler
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_socketio import SocketIO, join_room
 
 
 db = crud()
 wh =watsonhandler()
+socketio = SocketIO(app)
 @app.route('/')
 @app.route('/index',methods=['POST','GET'])
 def index():
@@ -27,7 +29,9 @@ def login():
         else:
             if check_password_hash(doc['password'],password):
                 session['user_id'] = email
-                return redirect('/interaction')
+                doc = db.search_feature(email, 'login_credentials')
+                username = doc['username']
+                return redirect('interaction/'+str(username))
             else:
                 error = "Incorrect login credentials"
                 return render_template('login.html',error = error)
@@ -54,21 +58,26 @@ def register():
                 return redirect('/login')
     return render_template('register.html')
 
-@app.route('/interaction',methods=['POST','GET'])
-def interaction():
-    fin = ''
-    [whs_id, assistant, msg] = wh.get_session_id()
-    for key1, value1 in msg.items():
-        if key1 == 'output':
-            for key2, value2 in value1.items():
-                if key2 == 'generic':
-                    for i in value2:
-                        for key3, value3 in i.items():
-                            if key3 == 'text':
-                                fin = value3
-    return render_template('interaction.html', fin = fin)
+
+@app.route('/interaction/<string:username>')
+def interaction(username):
+    [session_id, assistant] = wh.get_session_id()
+    return render_template('interaction.html', username=username, session_id = session_id)
+
 
 @app.route('/logout')
 def logout():
     session.pop('user_id')
     return redirect('/index')
+
+
+@socketio.on('join_room')
+def handle_session_joining_event(data):
+    print("The user " + data['username'] + "is connected to room " + data['session_id'])
+    join_room(data['session_id'])
+
+
+@socketio.on('send_message')
+def handle_send_message(data):
+    print("Sent_User: "+data['username']+"\nMessage:"+data['message']+"\nSession_id:"+ data['session_id'])
+    socketio.emit('recieve_message', data, room=data['session_id'])
