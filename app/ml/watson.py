@@ -10,7 +10,7 @@ assistant = ibma(
     authenticator = authenticator
 )
 
-assistant.set_service_url("https://api.eu-gb.assistant.watson.cloud.ibm.com/instances/a4b4a8ab-ebad-4b90-9a6c-fb8a73bc683b")
+assistant.set_service_url("https://api.eu-gb.assistant.watson.cloud.ibm.com/instances/94cb6503-cdf9-42c1-85a4-aa985d281087")
 
 response = assistant.create_session(
     assistant_id = "0e8394dd-c7bb-44a4-ac8c-82943e502433"
@@ -23,8 +23,30 @@ msg = assistant.message(
     session_id=response['session_id'],
     input={
         'message_type': 'text',
-        'text': 'hello'
+        'text': 'my name is Vinay S'
     }
 ).get_result()
 
 print(json.dumps(msg, indent=2))
+resultdict ={}
+for key1,value1 in msg.items():
+    if key1 == 'output':
+        for key2, value2 in value1.items():
+            if key2 == 'entities':
+                for i in value2:
+                    for key3, value3 in i.items():
+                        if key3 == 'entity':
+                            skey = value3
+                        if key3 == 'value':
+                            svalue = value3
+                    resultdict[skey] = svalue
+            if key2 == 'generic':
+                for i in value2:
+                    for key4,value4 in i.items():
+                        if key4 == 'text':
+                            if 'response' in resultdict.keys():
+                                resultdict['response'].append(value4)
+                            else:
+                                resultdict['response'] = [value4]
+
+print(json.dumps(resultdict,indent =2))
