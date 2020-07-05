@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="javascript" href="{{url_for('static',filename='js/socket.js')}}">
+    <title></title>
+  </head>
+  <body>
+    <h1>  Welcome {{username}}</h1>
+      <div id='messages'>
+        <form id = "msg_input_form">
+          <div>
+              <input id="message_input" type="text" name="candidate_msg" required autocomplete="off">
+          </div>
+          <div >
+            <input type="submit">
+          </div>
+        </form>
+        <div id="introduction">
+        <b>  watson: </b> {{botintro}}
+        </div>
+      </div>
+
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+
+  <script type="text/javascript">
+  const socket = io.connect("http://127.0.0.1:5000");
+  socket.on('connect', function() {
+    socket.emit('join_room',{
+      username: "{{username}}",
+      session_id: "{{session_id}}"
+    });
+
+  let message_input = document.getElementById('message_input');
+  document.getElementById('msg_input_form').onsubmit = function(e) {
+    e.preventDefault();
+    let message = message_input.value.trim();
+    if (message.length) {
+      socket.emit('send_message', {
+        username : "{{username}}",
+        session_id : "{{session_id}}",
+        message : message
+      });
+    }
+    message_input.value = '';
+    message_input.focus();
+  }
+});
+
+
+
+      socket.on('recieve_message', function(data) {
+        for (key in data){
+          if (key == 'user')
+          {
+            value = data[key]
+        const newNode = document.createElement('div');
+        newNode.innerHTML = `<b> ${value.username}: &nbsp:</b> ${value.message}`;
+        document.getElementById('messages').appendChild(newNode);
+      }
+        if (key == 'bot_msg') {
+          botresp = data[key]
+          botresp.forEach( function(item){
+          const newNode = document.createElement('div');
+          newNode.innerHTML = `<b> watson: &nbsp:</b> ${item}`;
+          document.getElementById('messages').appendChild(newNode);
+        });
+      }
+    }
+
+      });
+
+</script>
+</html>

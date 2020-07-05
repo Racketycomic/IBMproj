@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+    <title></title>
+</head>
+<body>
+  <center>
+      <h2>Login Form</h2>
+  <div class="container">
+      <form action="/login" method="post">
+          <div class="row">
+              <div class="col-25">
+                  <label for="email">Email</label>
+              </div>
+              <div class="col-75">
+                  <input type="email" id="email" name="email" placeholder="enter email id" required>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-25">
+                  <label for="password">Password</label>
+              </div>
+              <div class="col-75">
+                  <input type="password" id="password" name="password" placeholder="enter password" required>
+              </div>
+          </div>
+          <div class="row">
+              <input type="submit" value="Login">
+          </div>
+          {% if error %}
+  <div> {{error}} </div>
+    {% endif %}
+    
+      </form>
+      <div class="row">
+        <a href="{{url_for('register')}}">  <button type="submit"> Register </button> </a>
+        </div>
+      </div></center>
+      
+
+</body>
+</html>
