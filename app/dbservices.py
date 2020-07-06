@@ -37,10 +37,9 @@ class crud():
         my_database = client[database_name]
         result = Result(my_database.all_docs, include_docs=True)
         my_document = result[ResultByKey(key)]
-        if len(my_document)!=0:
-            for key, value in my_document[0].items():
-                if key == 'doc':
-                    doc = value
-            return doc
-        else:
-            return my_document
+        for key, value in my_document[0].items():
+            if key == 'doc':
+                doc = value
+        return doc
+
+    

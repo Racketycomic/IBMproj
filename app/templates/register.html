@@ -1,71 +1,34 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
-<head>
+  <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
     <title></title>
   </head>
-
   <body>
-    <center>
-        <h2>Register Form</h2>
-    <div class="container">
-        <form action="/register" method="post">
-            <div class="row">
-                <div class="col-25">
-                    <label for="username">Username</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" id="username" name="username" placeholder="enter the username" required>
-                </div>
-            </div>
-            <div class="row">
-              <div class="col-25">
-                  <label for="email">Email</label>
-              </div>
-              <div class="col-75">
-                  <input type="email" id="email" name="email" placeholder="enter the email id" required>
-              </div>
-          </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="password">Password</label>
-                </div>
-                <div class="col-75">
-                    <input type="password" id="password" name="password" placeholder="enter the password" required>
-                </div>
-            </div>
-            <div class="row">
-              <div class="col-25">
-                  <label for="repass">Re-Password</label>
-              </div>
-              <div class="col-75">
-                  <input type="password" id="repass" name="repass" placeholder="re-enter the password" required>
-              </div>
-          </div>
-          <div class="row">
-            <input type="submit" value="Register">
-        </div>
-          {% if error %}
-    <div> {{error}} </div>
+    <form class="" action="/register" method="post">
+      <div class="">
+        <input type="text" name="username" placeholder="Enter the name" required>
+      </div>
+      <div class="">
+          <input type="email" name="email" placeholder="Enter the email" required>
+      </div>
+      <div class="">
+          <input type="password" name="password" placeholder="Enter the password" required>
+      </div>
+      <div class="">
+            <input type="password" name="repass" placeholder="Re-enter the password" required>
+      </div>
+
+    <div class="">
+        <input type="submit" placeholder="Register">
+    </div>
+
+
+
+    </form>
+    {% if error %}
+    <div> {{error}} <div>
       {% endif %}
-      </div></center>
-    </form>  
-    </body>
+
+  </body>
 </html>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
