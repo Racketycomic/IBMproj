@@ -7,8 +7,11 @@ from flask_socketio import SocketIO, join_room
 
 
 db = crud()
+<<<<<<< HEAD
+=======
 wh = watsonhandler()
 socketio = SocketIO(app)
+>>>>>>> 5b3f0c52e109350b5d390a0573f8df228333dfbd
 @app.route('/')
 @app.route('/index', methods=['POST', 'GET'])
 def index():
@@ -58,6 +61,21 @@ def register():
                 return redirect('/login')
     return render_template('register.html')
 
+<<<<<<< HEAD
+@app.route('/interaction')
+def interaction():
+    fin = ''
+    [whs_id, assistant, msg] = wh.get_session_id()
+    for key1, value1 in msg.items():
+        if key1 == 'output':
+            for key2, value2 in value1.items():
+                if key2 == 'generic':
+                    for i in value2:
+                        for key3, value3 in i.items():
+                            if key3 == 'text':
+                                fin = value3
+
+=======
 
 @app.route('/interaction/<string:username>')
 def interaction(username):
@@ -66,6 +84,7 @@ def interaction(username):
     session_id = id[0]
     botintro = "Hi!! I'm REBOS, I'll be taking you through the recruitment process and help you clarify your queries."
     return render_template('interaction.html', username=username, session_id = session_id, botintro = botintro)
+>>>>>>> 5b3f0c52e109350b5d390a0573f8df228333dfbd
 
 
 @app.route('/logout')

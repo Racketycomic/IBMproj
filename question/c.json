@@ -114,8 +114,8 @@ C=[{
   "question":"#include<stdio.h>
 
   main()
-  { 
-     int *p = 15; 
+  {
+     int *p = 15;
      printf('%d',*p);
   }",
   "options":["15","Garbage value","Runtime error","Compiler error"],
@@ -125,13 +125,13 @@ C=[{
   "question_number":15,
   "question":"#include<stdio.h>
 
-  int* f() 
+  int* f()
   {
      int x = 5;
-     
+
      return &x;
-  }	
-  main() 
+  }
+  main()
   {
      printf('%d', *f());
   }",
@@ -142,10 +142,10 @@ C=[{
   "question_number":16,
   "question":"#include<stdio.h>
 
-  main() 
+  main()
   {
-     unsigned x = 5, y=&x, *p = y+0; 
-  
+     unsigned x = 5, y=&x, *p = y+0;
+
      printf('%u',*p);
   }",
   "options":["Address of x","Address of y","Address of p","5"],
@@ -156,12 +156,12 @@ C=[{
   "question":"#include<stdio.h>
 
   main()
-  { 
+  {
      int x = 3;
-     
+
      x += 2;
      x =+ 2;
-     printf('%d', x); 
+     printf('%d', x);
   }",
   "options":["2","5","7","compile error"],
   "answer":"2"
@@ -170,10 +170,10 @@ C=[{
   "question_number":18,
   "question":"#include<stdio.h>
 
-  main() 
-  { 
+  main()
+  {
      char s[]='hello', t[]='hello';
-     
+
      if(s==t){
        printf('eqaul strings');
     }
@@ -186,16 +186,16 @@ C=[{
   "question":"#include<stdio.h>
 
   void f(int a[])
-  {  
+  {
      int i;
-     
+
      for(i=0; i<3; i++)
         a[i]++;
   }
   main()
-  {	
+  {
      int i,a[] = {10, 20, 30};
-     
+
      f(a);
      for(i=0; i<3; ++i)
      {

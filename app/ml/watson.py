@@ -2,6 +2,9 @@ from ibm_watson import AssistantV2 as ibma
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 import json
 
+
+class watsonconnection():
+    
 apikey = "v7BXhz6ssuu6N47OyVmm8aOhWlegSPPw5PF4fjEmiM2h"
 authenticator = IAMAuthenticator(f'{apikey}')
 
