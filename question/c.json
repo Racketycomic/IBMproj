@@ -1,0 +1,93 @@
+{
+            question_number:1
+            question: "An exception is __",
+            options: ["Runtime error","Compile time error","Logical error","None of the above"],
+            answer: "Runtime error"
+}
+
+{
+            question_number:2
+            question: "Where to place “f” with a double constant 3.14 to specify it as a float?",
+            options: ["(float)(3.14)(f)","(f)(3.14)","3.14f","f(3.14)"],
+            answer: "3.14f"
+}
+
+{
+            question_number:3
+            question: "Which library function can convert an unsigned long to a string?",
+            options: ["ltoa() ","ultoa()","system() ","unsigned long can’t be converted to a string"],
+            answer: "ultoa()"
+}
+
+{
+            question_number:4
+            question: " Which files will get closed through the fclose() in the following program?
+                        #include<stdio.h>
+
+                        int main ()
+                        {
+                        FILE *fs, *ft, *fp;
+
+                        fp = fopen("ABC", "r");
+                        fs = fopen("ACD", "r");
+                        ft = fopen("ADF", "r");
+                        fclose(fp, fs, ft);
+                        return 0;
+                        }",
+            options: ["ABC","ACD","ADF","Return error"],
+            answer: "Return error"
+}
+
+{
+            question_number:5
+            question: "What is the output of the below code snippet?
+            #include<stdio.h>
+
+            main()
+            {
+             int a = 5, b = 3, c = 4;
+             printf(\"a=%d,b=%d\n\",a,b,c)",
+            options: [" a=5, b=3","a=5, b=3, c=0","a=5, b=3, 0","compile error"],
+            answer: "a=5, b=3"
+}
+
+{
+            question_number:6
+            question: "What is the output of the following program?
+            #include<stdio.h>
+
+              main()
+              {
+                 printf(\""\"\");
+              }",
+            options: [" \","\"","""","Compile error"],
+            answer: "Compile error"
+}
+
+{
+            question_number:7
+            question: "To print a double value which format specifier can be used?",
+            options: ["%L","%lf","%Lf","None of the above"],
+            answer: "%L"
+}
+
+{
+            question_number:8
+            question:"Choose the correct order of evaluation",
+            options: ["Relational Arithematic Logical Assignment","Arithmetic Relational Logical Assignment","Logical Arithmetic Relational Assignment","Assignment Arithmetic Logical Relational"],
+            answer: "Arithmetic Relational Logical Assignment"
+}
+
+{
+            question_number:9
+            question: "Which header file supports the functions - malloc() and calloc()?",
+            options: ["stdlib.h","memory.h","math.h","stdio.h"],
+            answer: "memory.h"
+}
+
+{
+            question_number:10
+            question: "The maximum combined length of the command-line arguments as well as the spaces between adjacent arguments is – a) 120 characters, b) 56 characters, c) Vary from one OS to another",
+            options: ["a","a, b","a, b, c","c"],
+            answer: "c"
+}
