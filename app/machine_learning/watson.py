@@ -21,11 +21,11 @@ class watsonhandler():
         ).get_result()
         print(json.dumps(response, indent=2))
         session_id = response['session_id']
-<<<<<<< HEAD
+
         return (session_id, assistant)
-=======
+
         return [session_id, assistant]
->>>>>>> 5b3f0c52e109350b5d390a0573f8df228333dfbd
+
 
     def watson_request(self, session_id, assistant, text):
         msg = assistant.message(
@@ -36,9 +36,9 @@ class watsonhandler():
                 'text': text
             }
         ).get_result()
-<<<<<<< HEAD
+
         return (msg['output'])
-=======
+
         resultdict ={}
         for key1,value1 in msg.items():
             if key1 == 'output':
@@ -61,4 +61,3 @@ class watsonhandler():
                                         resultdict['response'] = [value4]
 
         return (resultdict)
->>>>>>> 5b3f0c52e109350b5d390a0573f8df228333dfbd
