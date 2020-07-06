@@ -30,6 +30,7 @@ class crud():
             print("User inserted")
         except:
             print("Insertion failed")
+        client.disconnect()
 
     def search_feature(self, key, database_name):
         c = dbservice()
@@ -37,9 +38,20 @@ class crud():
         my_database = client[database_name]
         result = Result(my_database.all_docs, include_docs=True)
         my_document = result[ResultByKey(key)]
+<<<<<<< HEAD
         for key, value in my_document[0].items():
             if key == 'doc':
                 doc = value
         return doc
 
     
+=======
+        if len(my_document)!=0:
+            for key, value in my_document[0].items():
+                if key == 'doc':
+                    doc = value
+            return doc
+        else:
+            return my_document
+        client.disconnect()
+>>>>>>> 5b3f0c52e109350b5d390a0573f8df228333dfbd

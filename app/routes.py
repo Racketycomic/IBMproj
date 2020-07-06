@@ -1,13 +1,19 @@
-from flask import redirect, render_template, session, request
+from flask import redirect, render_template,session,request,logging
 from app.dbservices import crud
 from app import app
 from app.machine_learning.watson import watsonhandler
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_socketio import SocketIO, join_room
 
 
 db = crud()
+<<<<<<< HEAD
+=======
+wh = watsonhandler()
+socketio = SocketIO(app)
+>>>>>>> 5b3f0c52e109350b5d390a0573f8df228333dfbd
 @app.route('/')
-@app.route('/index',methods=['POST','GET'])
+@app.route('/index', methods=['POST', 'GET'])
 def index():
     return render_template('index.html')
 
@@ -24,12 +30,14 @@ def login():
             error = 'Email not found please sign in'
             return render_template('login.html', error = error)
         else:
-            if check_password_hash(doc['password'],password):
+            if check_password_hash(doc['password'], password):
                 session['user_id'] = email
-                return redirect('/interaction')
+                doc = db.search_feature(email, 'login_credentials')
+                username = doc['username']
+                return redirect('interaction/'+str(username))
             else:
                 error = "Incorrect login credentials"
-                return render_template('login.html',error = error)
+                return render_template('login.html', error = error)
     return render_template('login.html')
 
 
@@ -53,6 +61,7 @@ def register():
                 return redirect('/login')
     return render_template('register.html')
 
+<<<<<<< HEAD
 @app.route('/interaction')
 def interaction():
     fin = ''
@@ -66,9 +75,38 @@ def interaction():
                             if key3 == 'text':
                                 fin = value3
 
+=======
+
+@app.route('/interaction/<string:username>')
+def interaction(username):
+    assistant = wh.get_assistant()
+    id = wh.get_session_id(assistant)
+    session_id = id[0]
+    botintro = "Hi!! I'm REBOS, I'll be taking you through the recruitment process and help you clarify your queries."
+    return render_template('interaction.html', username=username, session_id = session_id, botintro = botintro)
+>>>>>>> 5b3f0c52e109350b5d390a0573f8df228333dfbd
 
 
 @app.route('/logout')
 def logout():
     session.pop('user_id')
     return redirect('/index')
+
+
+@socketio.on('join_room')
+def handle_session_joining_event(data):
+    print(data['session_id'])
+    print("The user " + data['username'] + " is connected to room " + data['session_id'])
+    join_room(data['session_id'])
+
+
+@socketio.on('send_message')
+def handle_send_message(data):
+    print("Sent_User: "+ data['username'] + "\nMessage:" + data['message']+"\nSession_id:"+ data['session_id'])
+    assistant = wh.get_assistant()
+    resp = wh.watson_request(data['session_id'], assistant, data['message'])
+    for key,value in resp.items():
+        if key == 'response':
+            rep = value
+    data1 = {'user':data , 'bot_msg': rep}
+    socketio.emit('recieve_message', data1 , room = data['session_id'])
