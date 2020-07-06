@@ -1,26 +1,26 @@
-{
-            question_number:1
+C=[{
+            question_number:1,
             question: "An exception is __",
             options: ["Runtime error","Compile time error","Logical error","None of the above"],
             answer: "Runtime error"
-}
+},
 
 {
-            question_number:2
+            question_number:2,
             question: "Where to place “f” with a double constant 3.14 to specify it as a float?",
             options: ["(float)(3.14)(f)","(f)(3.14)","3.14f","f(3.14)"],
             answer: "3.14f"
-}
+},
 
 {
-            question_number:3
+            question_number:3,
             question: "Which library function can convert an unsigned long to a string?",
             options: ["ltoa() ","ultoa()","system() ","unsigned long can’t be converted to a string"],
             answer: "ultoa()"
-}
+},
 
 {
-            question_number:4
+            question_number:4,
             question: " Which files will get closed through the fclose() in the following program?
                         #include<stdio.h>
 
@@ -36,10 +36,10 @@
                         }",
             options: ["ABC","ACD","ADF","Return error"],
             answer: "Return error"
-}
+},
 
 {
-            question_number:5
+            question_number:5,
             question: "What is the output of the below code snippet?
             #include<stdio.h>
 
@@ -49,10 +49,10 @@
              printf(\"a=%d,b=%d\n\",a,b,c)",
             options: [" a=5, b=3","a=5, b=3, c=0","a=5, b=3, 0","compile error"],
             answer: "a=5, b=3"
-}
+},
 
 {
-            question_number:6
+            question_number:6,
             question: "What is the output of the following program?
             #include<stdio.h>
 
@@ -62,32 +62,153 @@
               }",
             options: [" \","\"","""","Compile error"],
             answer: "Compile error"
-}
+},
 
 {
-            question_number:7
+            question_number:7,
             question: "To print a double value which format specifier can be used?",
             options: ["%L","%lf","%Lf","None of the above"],
             answer: "%L"
-}
+},
 
 {
-            question_number:8
+            question_number:8,
             question:"Choose the correct order of evaluation",
             options: ["Relational Arithematic Logical Assignment","Arithmetic Relational Logical Assignment","Logical Arithmetic Relational Assignment","Assignment Arithmetic Logical Relational"],
             answer: "Arithmetic Relational Logical Assignment"
-}
+},
 
 {
-            question_number:9
+            question_number:9,
             question: "Which header file supports the functions - malloc() and calloc()?",
             options: ["stdlib.h","memory.h","math.h","stdio.h"],
             answer: "memory.h"
-}
+},
 
 {
-            question_number:10
+            question_number:10,
             question: "The maximum combined length of the command-line arguments as well as the spaces between adjacent arguments is – a) 120 characters, b) 56 characters, c) Vary from one OS to another",
             options: ["a","a, b","a, b, c","c"],
             answer: "c"
+},
+{
+  "question_number":11,
+  "question":"What do you mean by int (*ptr)[10]",
+  "options":["ptr is an array of pointers to 10 integers","ptr is a pointer to an array of 10 integers","ptr is an array of 10 integers","Invalid statement"],
+  "answer":"ptr is a pointer to an array of 10 integers"
+},
+{
+  "question_number":12,
+  "question":"In the given below statement, what does the “pf” indicate? int (*pf)();",
+  "options":["pf is a pointer of a function which return int","pf is a pointer","pf is a function pointer","None of the above"],
+  "answer":"pf is a pointer of a function which return int"
+},
+{
+  "question_number":13,
+  "question":"A Variable name in C includes which special symbols?",
+  "options":["* (asterisk)","# (Hash)","+ (Addition)","_ (underscore)"],
+  "answer":"_ (underscore)"
+},
+{
+  "question_number":14,
+  "question":"#include<stdio.h>
+
+  main()
+  { 
+     int *p = 15; 
+     printf('%d',*p);
+  }",
+  "options":["15","Garbage value","Runtime error","Compiler error"],
+  "answer":"Runtime error"
+},
+{
+  "question_number":15,
+  "question":"#include<stdio.h>
+
+  int* f() 
+  {
+     int x = 5;
+     
+     return &x;
+  }	
+  main() 
+  {
+     printf('%d', *f());
+  }",
+  "options":["5","Address of ‘x’","Compile error","Runtime error"],
+  "answer":"Runtime error"
+},
+{
+  "question_number":16,
+  "question":"#include<stdio.h>
+
+  main() 
+  {
+     unsigned x = 5, y=&x, *p = y+0; 
+  
+     printf('%u',*p);
+  }",
+  "options":["Address of x","Address of y","Address of p","5"],
+  "answer":"5"
+},
+{
+  "question_number":17,
+  "question":"#include<stdio.h>
+
+  main()
+  { 
+     int x = 3;
+     
+     x += 2;
+     x =+ 2;
+     printf('%d', x); 
+  }",
+  "options":["2","5","7","compile error"],
+  "answer":"2"
+},
+{
+  "question_number":18,
+  "question":"#include<stdio.h>
+
+  main() 
+  { 
+     char s[]='hello', t[]='hello';
+     
+     if(s==t){
+       printf('eqaul strings');
+    }
+  }",
+  "options":[" Equal strings","Unequal strings","No output","No output"],
+  "answer":"No output"
+},
+{
+  "question_number":19,
+  "question":"#include<stdio.h>
+
+  void f(int a[])
+  {  
+     int i;
+     
+     for(i=0; i<3; i++)
+        a[i]++;
+  }
+  main()
+  {	
+     int i,a[] = {10, 20, 30};
+     
+     f(a);
+     for(i=0; i<3; ++i)
+     {
+        printf('%d ',a[i]);
+     }
+  }",
+  "options":["10 20 30","11 21 31","Compile error","Runtime error"],
+  "answer":"11 21 31"
+},
+{
+  "question_number":20,
+  "question":"Which of the following statement shows the correct implementation of nested conditional operation by finding greatest number out of three numbers?",
+  "options":["max = a>b ? a>c?a:c:b>c?b:c","a=b ? c=30;","a>b : c=30 : c=40;","return (a>b)?(a:b) ?a:c:b"],
+  "answer":"max = a>b ? a>c?a:c:b>c?b:c"
 }
+]
