@@ -1,0 +1,122 @@
+python = [
+{
+    "question_number":1,
+    "question":"",
+    "options":["","","",""],
+    "answer":""
+},
+{
+    "question_number":2,
+    "question":"",
+    "options":["","","",""],
+    "answer":""
+},
+{
+    "question_number":3,
+    "question":"",
+    "options":["","","",""],
+    "answer":""
+},
+{
+    "question_number":4,
+    "question":"",
+    "options":["","","",""],
+    "answer":""
+},
+{
+    "question_number":5,
+    "question":"",
+    "options":["","","",""],
+    "answer":""
+},
+{
+    "question_number":6,
+    "question":"",
+    "options":["","","",""],
+    "answer":""
+},
+{
+    "question_number":7,
+    "question":"",
+    "options":["","","",""],
+    "answer":""
+},
+{
+    "question_number":8,
+    "question":"",
+    "options":["","","",""],
+    "answer":""
+},
+{
+    "question_number":9,
+    "question":"",
+    "options":["","","",""],
+    "answer":""
+},
+{
+    "question_number":10,
+    "question":"",
+    "options":["","","",""],
+    "answer":""
+},
+{
+    "question_number":11,
+    "question":"",
+    "options":["","","",""],
+    "answer":""
+},
+{
+    "question_number":12,
+    "question":"",
+    "options":["","","",""],
+    "answer":""
+},
+{
+    "question_number":13,
+    "question":"",
+    "options":["","","",""],
+    "answer":""
+},
+{
+    "question_number":14,
+    "question":"",
+    "options":["","","",""],
+    "answer":""
+},
+{
+    "question_number":15,
+    "question":"",
+    "options":["","","",""],
+    "answer":""
+},
+{
+    "question_number":16,
+    "question":"",
+    "options":["","","",""],
+    "answer":""
+},
+{
+    "question_number":17,
+    "question":"",
+    "options":["","","",""],
+    "answer":""
+},
+{
+    "question_number":18,
+    "question":"",
+    "options":["","","",""],
+    "answer":""
+},
+{
+    "question_number":19,
+    "question":"",
+    "options":["","","",""],
+    "answer":""
+},
+{
+    "question_number":20,
+    "question":"",
+    "options":["","","",""],
+    "answer":""
+}
+]
