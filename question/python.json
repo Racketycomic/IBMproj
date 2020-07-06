@@ -1,122 +1,144 @@
 python = [
 {
     "question_number":1,
-    "question":"",
-    "options":["","","",""],
-    "answer":""
+    "question":"What is the output of print tinylist * 2 if tinylist = [123, 'john']?",
+    "options":["[123, 'john', 123, 'john']","[123, 'john'] * 2","Error","None of the above."],
+    "answer":"[123, 'john', 123, 'john']"
 },
 {
     "question_number":2,
-    "question":"",
-    "options":["","","",""],
-    "answer":""
+    "question":"Which of the following function replaces all occurrences of old substring in string with new string?",
+    "options":["replace(old, new [, max])","strip([chars])","swapcase()","title()"],
+    "answer":"replace(old, new [, max])"
 },
 {
     "question_number":3,
-    "question":"",
-    "options":["","","",""],
-    "answer":""
+    "question":"In Python we can create a popup menu. Select the code to display a popup menu?",
+    "options":["Menu.post(250,250)","Menu.post()","Menu.display()","Menu.display_popup(250,250)"],
+    "answer":"Menu.post(250,250)"
 },
 {
     "question_number":4,
-    "question":"",
-    "options":["","","",""],
-    "answer":""
+    "question":"State ‘Tuples are mutable’?",
+    "options":["True","False","May be","Sometimes (Depending upon the condition)"],
+    "answer":"False"
 },
 {
     "question_number":5,
-    "question":"",
-    "options":["","","",""],
-    "answer":""
+    "question":"What is the value of a?
+
+    a = 4*4-4+4/4",
+    "options":["13","5","19","4"],
+    "answer":"13"
 },
 {
     "question_number":6,
-    "question":"",
-    "options":["","","",""],
-    "answer":""
+    "question":"What will be the output of the following code?
+
+    def f():
+       pass
+    print(type(f()))",
+    "options":["<type 'function '>","<type 'tuple '>","<type 'NoneType '>","<type 'pass '>"],
+    "answer":"<type 'NoneType '>"
 },
 {
     "question_number":7,
-    "question":"",
-    "options":["","","",""],
-    "answer":""
+    "question":"What is the output of print list if list = [ 'abcd', 786 , 2.23, 'john', 70.2 ]?",
+    "options":["[ 'abcd', 786 , 2.23, 'john', 70.2 ]","list","Error","None of the above."],
+    "answer":"[ 'abcd', 786 , 2.23, 'john', 70.2 ]"
 },
 {
     "question_number":8,
-    "question":"",
-    "options":["","","",""],
-    "answer":""
+    "question":"What is the output of print str[2:] if str = 'Hello World!'?",
+    "options":["llo World!","H","llo","None of the above."],
+    "answer":"llo World!"
 },
 {
     "question_number":9,
-    "question":"",
-    "options":["","","",""],
-    "answer":""
+    "question":"Which of the following function randomizes the items of a list in place?",
+    "options":["shuffle(lst)","capitalize()","isalnum()","isdigit()"],
+    "answer":"shuffle(lst)"
 },
 {
     "question_number":10,
-    "question":"",
-    "options":["","","",""],
-    "answer":""
+    "question":"Which of the following data types is not supported in python?",
+    "options":["Numbers","String","List","Slice"],
+    "answer":"Slice"
 },
 {
     "question_number":11,
-    "question":"",
-    "options":["","","",""],
-    "answer":""
+    "question":"What is the following function inserts an object at given index in a list?",
+    "options":["list.index(obj)","list.insert(index, obj)","list.pop(obj=list[-1])","list.remove(obj)"],
+    "answer":"list.insert(index, obj)"
 },
 {
     "question_number":12,
-    "question":"",
-    "options":["","","",""],
-    "answer":""
+    "question":"What is output for −
+
+    ' ' in 'python' ?",
+    "options":["'python'","False","Name error","True"],
+    "answer":"True"
 },
 {
     "question_number":13,
-    "question":"",
-    "options":["","","",""],
-    "answer":""
+    "question":"What is output of following code −
+
+    def func(x, ans):
+       if(x==0):
+          return 0
+       else: 
+          return func(x-1, x+ans) 
+    print(func(2,0))",
+    "options":["0","1","2","3"],
+    "answer":"0"
 },
 {
     "question_number":14,
-    "question":"",
-    "options":["","","",""],
-    "answer":""
+    "question":"Which of the following data types is not supported in python?",
+    "options":["Tuple","Dictionary","Generics","List"],
+    "answer":"Generics"
 },
 {
     "question_number":15,
-    "question":"",
-    "options":["","","",""],
-    "answer":""
+    "question":"Which way among them is used to create an event loop ?",
+    "options":["Window.eventloop()","Window.mainloop()","Window.loop()","Eventloop.window()"],
+    "answer":"Window.mainloop()"
 },
 {
     "question_number":16,
-    "question":"",
-    "options":["","","",""],
-    "answer":""
+    "question":"What is the range of method ‘random.random()’?",
+    "options":["(0.0 , 1.0)","(0.0 , 1.0]","[0.0, 1.0)","[0.0 , 1.0]"],
+    "answer":"[0.0, 1.0)"
 },
 {
     "question_number":17,
-    "question":"",
-    "options":["","","",""],
-    "answer":""
+    "question":"Select the correct option to draw a rectangle centred at 50,50 with width and height as 50, 70 respectively.",
+    "options":["Canvas.create_rect(50,50,50,70)","Canvas.create_rect(50,70,50,50)","Canvas.create_rectangle(50,50,50,70)","Tkinter.create_rect(50,50,50,70)"],
+    "answer":"Canvas.create_rectangle(50,50,50,70)"
 },
 {
     "question_number":18,
-    "question":"",
-    "options":["","","",""],
-    "answer":""
+    "question":"Suppose you are given a set(s1={1,2,3}) then what is the output for the code −
+
+    2 * s1?",
+    "options":["(1,1,2,2,3,3)","[1,1,2,2,3,3]","Illegal","(1,2,3,1,2,3)"],
+    "answer":"Illegal"
 },
 {
     "question_number":19,
-    "question":"",
-    "options":["","","",""],
-    "answer":""
+    "question":"What is output of following code −
+
+    s = ''mnopqr ''
+    i = ''m ''
+    while i in s:
+       print('i', end= '' '')",
+    "options":["i i i i i i i i……..","m m m m m …..","m n o p q r","no output"],
+    "answer":"i i i i i i i i…….."
 },
 {
     "question_number":20,
-    "question":"",
-    "options":["","","",""],
-    "answer":""
+    "question":"Which among them is incorrect for set s={100,101,102,103}",
+    "options":["Len(s)","Sum(s)","Print(s[3])","Max(s)"],
+    "answer":"Print(s[3])"
 }
 ]

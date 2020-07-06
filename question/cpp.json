@@ -140,6 +140,6 @@ cpp=[{
             "question": "In CPP, cin and cout are the predefined stream __________ .",
             "options": ["Operator","Functions","Objects","Data types"],
             "answer": "Objects"
-},
+}
 
 ]
