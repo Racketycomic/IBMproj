@@ -4,14 +4,13 @@ from app import app
 from app.machine_learning.watson import watsonhandler
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_socketio import SocketIO, join_room
-
+from app.handler import convo_handler
 
 db = crud()
-<<<<<<< HEAD
-=======
+counter = 1
 wh = watsonhandler()
 socketio = SocketIO(app)
->>>>>>> 5b3f0c52e109350b5d390a0573f8df228333dfbd
+
 @app.route('/')
 @app.route('/index', methods=['POST', 'GET'])
 def index():
@@ -28,7 +27,7 @@ def login():
         print(doc)
         if len(doc) == 0:
             error = 'Email not found please sign in'
-            return render_template('login.html', error = error)
+            return render_template('login.html', error=error)
         else:
             if check_password_hash(doc['password'], password):
                 session['user_id'] = email
@@ -37,7 +36,7 @@ def login():
                 return redirect('interaction/'+str(username))
             else:
                 error = "Incorrect login credentials"
-                return render_template('login.html', error = error)
+                return render_template('login.html', error=error)
     return render_template('login.html')
 
 
@@ -61,21 +60,7 @@ def register():
                 return redirect('/login')
     return render_template('register.html')
 
-<<<<<<< HEAD
-@app.route('/interaction')
-def interaction():
-    fin = ''
-    [whs_id, assistant, msg] = wh.get_session_id()
-    for key1, value1 in msg.items():
-        if key1 == 'output':
-            for key2, value2 in value1.items():
-                if key2 == 'generic':
-                    for i in value2:
-                        for key3, value3 in i.items():
-                            if key3 == 'text':
-                                fin = value3
 
-=======
 
 @app.route('/interaction/<string:username>')
 def interaction(username):
@@ -83,8 +68,9 @@ def interaction(username):
     id = wh.get_session_id(assistant)
     session_id = id[0]
     botintro = "Hi!! I'm REBOS, I'll be taking you through the recruitment process and help you clarify your queries."
-    return render_template('interaction.html', username=username, session_id = session_id, botintro = botintro)
->>>>>>> 5b3f0c52e109350b5d390a0573f8df228333dfbd
+    return render_template('interaction.html', username=username, session_id=session_id,
+                           botintro=botintro)
+
 
 
 @app.route('/logout')
@@ -96,17 +82,19 @@ def logout():
 @socketio.on('join_room')
 def handle_session_joining_event(data):
     print(data['session_id'])
-    print("The user " + data['username'] + " is connected to room " + data['session_id'])
+    print("The user " + data['username'] + " is connected to room " +
+          data['session_id'])
     join_room(data['session_id'])
 
 
 @socketio.on('send_message')
 def handle_send_message(data):
-    print("Sent_User: "+ data['username'] + "\nMessage:" + data['message']+"\nSession_id:"+ data['session_id'])
+    print("Sent_User: " + data['username'] + "\nMessage:" + data['message'] +
+          "\nSession_id:" + data['session_id'])
     assistant = wh.get_assistant()
     resp = wh.watson_request(data['session_id'], assistant, data['message'])
-    for key,value in resp.items():
+    for key, value in resp.items():
         if key == 'response':
             rep = value
-    data1 = {'user':data , 'bot_msg': rep}
-    socketio.emit('recieve_message', data1 , room = data['session_id'])
+    data1 = {'user': data, 'bot_msg': rep}
+    socketio.emit('recieve_message', data1, room=data['session_id'])

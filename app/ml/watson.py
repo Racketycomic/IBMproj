@@ -3,8 +3,8 @@ from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 import json
 
 
-class watsonconnection():
-    
+
+
 apikey = "v7BXhz6ssuu6N47OyVmm8aOhWlegSPPw5PF4fjEmiM2h"
 authenticator = IAMAuthenticator(f'{apikey}')
 
@@ -26,23 +26,21 @@ msg = assistant.message(
     session_id=response['session_id'],
     input={
         'message_type': 'text',
-        'text': 'my name is Vinay S'
+        'text': '2003,vidyanikethan,submit',
+        'options' : {
+            'return_context': True
+        }
     }
 ).get_result()
 
 print(json.dumps(msg, indent=2))
 resultdict ={}
-for key1,value1 in msg.items():
+
+##respomse extraction
+
+for key1, value1 in msg.items():
     if key1 == 'output':
         for key2, value2 in value1.items():
-            if key2 == 'entities':
-                for i in value2:
-                    for key3, value3 in i.items():
-                        if key3 == 'entity':
-                            skey = value3
-                        if key3 == 'value':
-                            svalue = value3
-                    resultdict[skey] = svalue
             if key2 == 'generic':
                 for i in value2:
                     for key4,value4 in i.items():
@@ -52,4 +50,19 @@ for key1,value1 in msg.items():
                             else:
                                 resultdict['response'] = [value4]
 
+print(resultdict)
+result ={}
+###context variable extraction
+
+for key1,value1 in msg.items():
+    if key1 == 'context':
+        for key2, value2 in value1.items():
+            if key2 == 'skills':
+                for key3,value3 in value2.items():
+                    for key4,value4 in value3.items():
+                        for key5, value5 in value4.items():
+                            result[key5] = value5
+
+
+print(result)
 print(json.dumps(resultdict,indent =2))
