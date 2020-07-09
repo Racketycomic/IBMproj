@@ -26,10 +26,19 @@ msg = assistant.message(
     session_id=response['session_id'],
     input={
         'message_type': 'text',
-        'text': '2003,vidyanikethan,submit',
+        'text': 'no',
         'options' : {
             'return_context': True
         }
+    },
+    context = {
+               "skills":{
+                   "main skill": {
+                       "user_defined": {
+                           "flag": 1
+                       }
+                   }
+               }
     }
 ).get_result()
 
@@ -54,15 +63,19 @@ print(resultdict)
 result ={}
 ###context variable extraction
 
-for key1,value1 in msg.items():
+for key1, value1 in msg.items():
     if key1 == 'context':
         for key2, value2 in value1.items():
             if key2 == 'skills':
-                for key3,value3 in value2.items():
-                    for key4,value4 in value3.items():
+                for key3, value3 in value2.items():
+                    for key4, value4 in value3.items():
                         for key5, value5 in value4.items():
                             result[key5] = value5
 
 
+
+
 print(result)
+
+
 print(json.dumps(resultdict,indent =2))

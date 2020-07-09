@@ -45,11 +45,21 @@ class crud():
         return doc
 
 
-        if len(my_document)!=0:
+        if len(my_document) != 0:
             for key, value in my_document[0].items():
                 if key == 'doc':
                     doc = value
             return doc
         else:
             return my_document
+        client.disconnect()
+
+    def search_and_insert(self, key, database_name, data):
+        c = dbservice()
+        client = c.connection()
+        my_database = client[database_name]
+        my_document = my_database[key]
+        for i in data.keys():
+            my_document[i] = data[i]
+        my_document.save()
         client.disconnect()

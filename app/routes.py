@@ -5,8 +5,10 @@ from app.machine_learning.watson import watsonhandler
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_socketio import SocketIO, join_room
 from app.handler import convo_handler
+from app.machine_learning.data_extractor import extractor
 
 db = crud()
+cand = {}
 counter = 1
 wh = watsonhandler()
 socketio = SocketIO(app)
@@ -97,4 +99,6 @@ def handle_send_message(data):
         if key == 'response':
             rep = value
     data1 = {'user': data, 'bot_msg': rep}
+    global counter
+    counter += 1
     socketio.emit('recieve_message', data1, room=data['session_id'])

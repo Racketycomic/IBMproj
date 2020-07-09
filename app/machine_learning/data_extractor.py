@@ -28,3 +28,13 @@ class extractor():
                                     result[key5] = value5
 
         return result
+
+    def split_and_compile(self, msg_arr, flag):
+
+        result = msg_arr.split('|')
+        result = result[:-1]
+        if flag:
+            return result
+        else:
+            last_key = result[-1:]
+            return [result, last_key]
