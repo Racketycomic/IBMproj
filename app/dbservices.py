@@ -32,7 +32,7 @@ class crud():
             print("Insertion failed")
         client.disconnect()
 
-    def search_feature(self, key, database_name):
+    def search_feature(self, key, database_name): #key=languvage, #database_name
         c = dbservice()
         client = c.connection()
         my_database = client[database_name]
