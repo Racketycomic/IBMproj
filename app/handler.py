@@ -74,7 +74,7 @@ class convo_handler():
                         rep = value
                 data1 = {'user': data, 'bot_msg': rep}
                 return data1
-
+'''
             else:
                 if 'submit_1' not in context_var.keys():
                     dob = context_var['dob']
@@ -108,4 +108,4 @@ class convo_handler():
                         if key == 'response':
                             rep = value
                     data1 = {'user': data, 'bot_msg': rep}
-                    return data1
+                    return data1'''

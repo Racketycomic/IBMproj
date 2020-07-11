@@ -2,7 +2,7 @@ from ibm_watson import AssistantV2 as ibma
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 import json
 from flask import current_app
-from machine_learning.data_extractor import extractor
+from app.machine_learning.data_extractor import extractor
 
 class watsonhandler():
 
