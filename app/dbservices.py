@@ -60,6 +60,9 @@ class crud():
         my_database = client[database_name]
         my_document = my_database[key]
         for i in data.keys():
-            my_document[i] = data[i]
+            if my_document[i]:
+                my_document[i].append(data[i])
+            else:
+                my_document[i] = data[i]
         my_document.save()
         client.disconnect()
