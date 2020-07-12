@@ -6,6 +6,7 @@ wh = watsonhandler()
 e = extractor()
 
 class convo_handler():
+    """
 
     def server_convo_handler(self, data, counter, email):
         assistant = wh.get_assistant()
@@ -87,3 +88,4 @@ def unpack_response(response,data):
             rep = value
     data1 = {'user': data, 'bot_msg': rep}
     return data1
+"""
