@@ -25,13 +25,10 @@ class convo_handler():
                                                     data['message'], context)
 
         if 'dob' not in context_var.keys():
-            for key, value in response.items():
-                if key == 'response':
-                    rep = value
-            data1 = {'user': data, 'bot_msg': rep}
+            data1 = unpack_response(response, data)
             return(data1)
 
-        elif 'dialog_flag' not in context_var.keys():
+        elif 'dob' in context.var.keys() and :
             dob = context_var['dob']
             result = {'dob': dob}
             db.search_and_insert(email, 'candidate_features', result)
@@ -72,6 +69,8 @@ class convo_handler():
             return data1
 
         elif context_var['dialog_flag'] is 'skill':
+
+            ##ensure lowercase for skills
             result = e.split_and_compile(data['message'])
             result_dict = {'skill': result}
             db.search_and_insert(email, 'candidate_features', result_dict)
