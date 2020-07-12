@@ -32,7 +32,10 @@ class watsonhandler():
             session_id=session_id,
             input={
                 'message_type': 'text',
-                'text': text
+                'text': text,
+                'options' : {
+                    'return_context': True
+                }
             },
             context = context
         ).get_result()
@@ -40,5 +43,5 @@ class watsonhandler():
         e = extractor()
         response = e.response_extract(msg)
         context_var = e.context_variable_extractor(msg)
-
-        return [response,context_var]
+        print(msg)
+        return (response, context_var)
