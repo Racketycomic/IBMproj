@@ -84,6 +84,6 @@ class crud():
                 if i in my_document.keys():
                     my_document[i].append(data[i])
                 else:
-                    my_document[i] = data[i]
+                    my_document[i] = [data[i]]
             my_document.save()
         client.disconnect()

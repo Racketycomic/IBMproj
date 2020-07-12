@@ -37,31 +37,30 @@ class convo_handler():
 
         elif ('dob' in contextvariable.keys()) and ('10th' in contextvariable['cand_result']):
             result = e.split_and_compile(contextvariable['cand_result']['10th'])
-            result_dict = {'Education': [{'10th standard': result}]}
+            result_dict = {'Education': {'10th standard': result}}
             db.search_and_insert(email, 'candidate_features', result_dict,'double')
             data1 = unpack_response(response, data)
             return data1
 
         elif ('dob' in contextvariable.keys()) and ('12th' in contextvariable['cand_result']):
             result = e.split_and_compile(contextvariable['cand_result']['12th'])
-            result_dict = {'Education': [{'12th standard': result}]}
+            result_dict = {'Education': {'12th standard': result}}
             db.search_and_insert(email, 'candidate_features', result_dict,'double')
             data1 = unpack_response(response, data)
             return data1
 
         elif ('dob' in contextvariable.keys()) and ('UG' in contextvariable['cand_result']):
             result = e.split_and_compile(contextvariable['cand_result']['UG'])
-            result_dict = {'Education': [{'UG': result}]}
+            result_dict = {'Education': {'UG': result}}
             db.search_and_insert(email, 'candidate_features', result_dict,'double')
-            data1 = unpack_response(data, response)
+            data1 = unpack_response(response,data)
             return data1
 
         elif ('dob' in contextvariable.keys()) and ('Skill' in contextvariable['cand_result']):
 
             ##ensure lowercase for skills
             result = e.split_and_compile(contextvariable['cand_result']['Skill'])
-            for i in result:
-                i.lower()
+            result = [i.lower() for i in result]
             result_dict = {'Skill': result}
             db.search_and_insert(email, 'candidate_features', result_dict, flag= 'single')
             data1 = unpack_response(response, data)
@@ -105,7 +104,7 @@ class convo_handler():
                 data1 = unpack_response(response, data)
                 return data1
             else:
-                result_dict = {'Achievement': [contextvariable['cand_result']['Achievement']]}
+                result_dict = {'Achievement': contextvariable['cand_result']['Achievement']}
                 db.search_and_insert(email, 'candidate_features', result_dict, flag = 'ach')
                 data1 = unpack_response(response, data)
                 return data1

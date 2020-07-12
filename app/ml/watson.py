@@ -31,7 +31,7 @@ msg = assistant.message(
             'return_context': True
         }
     },
-    context = {
+    context= {
                "skills":{
                    "main skill": {
                        "user_defined": {
@@ -46,13 +46,26 @@ print(json.dumps(msg, indent=2))
 resultdict ={}
 
 ##respomse extraction
+arr = msg['output']['generic']
+print(arr)
+for i in arr:
+    for key4, value4 in i.items():
+        if key4 == 'text':
+            if 'response' in resultdict.keys():
+                resultdict['response'].append(value4)
+            else:
+                resultdict['response'] = [value4]
 
+print(resultdict)
+if msg['output']['generic'] not None:
+arr = msg['context']['skills']['main skill']['user_defined']
+print(arr)
 for key1, value1 in msg.items():
     if key1 == 'output':
         for key2, value2 in value1.items():
             if key2 == 'generic':
                 for i in value2:
-                    for key4,value4 in i.items():
+                    for key4, value4 in i.items():
                         if key4 == 'text':
                             if 'response' in resultdict.keys():
                                 resultdict['response'].append(value4)
@@ -79,3 +92,25 @@ print(result)
 
 
 print(json.dumps(resultdict,indent =2))
+
+
+{
+  "output": {
+    "generic": [
+      {
+        "values": [
+          {
+            "text": " <ul><li>Enter the following Educational details for Std. XII  </li> \n <li>Year of completion</li> \n <li>Board/University</li> \n <li>Persentage/Grade</li><li>Institute name</li>\n P.S: Please seperate each data using commas and after entering please type \"Submit\" to proceed</ul> \n"
+          }
+        ],
+        "response_type": "text",
+        "selection_policy": "sequential"
+      }
+    ],
+    "context":{
+        "cand_result":{
+            "10th":"<? input.text?>"
+        }
+    }
+  }
+}
