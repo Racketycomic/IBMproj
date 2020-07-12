@@ -10,6 +10,7 @@ from app.machine_learning.data_extractor import extractor
 db = crud()
 cand = {}
 counter = 1
+hand = convo_handler()
 wh = watsonhandler()
 socketio = SocketIO(app)
 
@@ -68,9 +69,9 @@ def register():
 def interaction(username):
     assistant = wh.get_assistant()
     id = wh.get_session_id(assistant)
-    session_id = id[0]
+    print(id+"SEE HERE SESSION ID")
     botintro = "Hi!! I'm REBOS, I'll be taking you through the recruitment process and help you clarify your queries."
-    return render_template('interaction.html', username=username, session_id=session_id,
+    return render_template('interaction.html', username=username, session_id=id,
                            botintro=botintro)
 
 
@@ -93,12 +94,7 @@ def handle_session_joining_event(data):
 def handle_send_message(data):
     print("Sent_User: " + data['username'] + "\nMessage:" + data['message'] +
           "\nSession_id:" + data['session_id'])
-    assistant = wh.get_assistant()
-    resp = wh.watson_request(data['session_id'], assistant, data['message'])
-    for key, value in resp.items():
-        if key == 'response':
-            rep = value
-    data1 = {'user': data, 'bot_msg': rep}
+    data1 = hand.server_convo_handler(data, session['user_id'])
     global counter
     counter += 1
     socketio.emit('recieve_message', data1, room=data['session_id'])

@@ -54,15 +54,36 @@ class crud():
             return my_document
         client.disconnect()
 
-    def search_and_insert(self, key, database_name, data):
+    def search_and_insert(self, key, database_name, data, flag):
         c = dbservice()
         client = c.connection()
         my_database = client[database_name]
-        my_document = my_database[key]
-        for i in data.keys():
-            if my_document[i]:
-                my_document[i].append(data[i])
-            else:
+        print('Inside search_and_insert')
+        if flag == 'double':
+            my_document = my_database[key]
+            for i in data.keys():
+                if i in my_document.keys():
+                    my_document[i].append(data[i])
+                else:
+                    my_document[i] = [data[i]]
+            my_document.save()
+        elif flag == 'single':
+            my_document = my_database[key]
+            for i in data.keys():
                 my_document[i] = data[i]
-        my_document.save()
+                my_document.save()
+
+        elif flag == 'create':
+            my_document = my_database.create_document(data)
+            my_document.save()
+            print('Inside Create')
+
+        else:
+            my_document = my_database[key]
+            for i in data.keys():
+                if i in my_document.keys():
+                    my_document[i].append(data[i])
+                else:
+                    my_document[i] = data[i]
+            my_document.save()
         client.disconnect()
