@@ -26,14 +26,15 @@ class watsonhandler():
         return (session_id)
 
 
-    def watson_request(self, session_id, assistant, text):
+    def watson_request(self, session_id, assistant, text,context):
         msg = assistant.message(
             assistant_id=current_app.config['WT_ASSISTANT_ID'],
             session_id=session_id,
             input={
                 'message_type': 'text',
                 'text': text
-            }
+            },
+            context = context
         ).get_result()
 
         e = extractor()

@@ -1,25 +1,28 @@
 from app.dbservices import crud
 import random
 
+
 def gettestdata(key, dbname, c):
-    doc = crud.search_feature(key, dbname)
+    db = crud()
+    doc = db.search_feature('Java', 'test_question')
     l = list(doc.items())
-    shuffled_doc=random.choices(l,k=c)
-    doc= dict(shuffled_doc)
+    shuffled_doc = random.choices(l, k=c)
+    doc = dict(shuffled_doc)
     return doc
 
 
 def gettest(username):
-    doc={}
-    docfinal={}
-    dicto={}
-    skill=["c","cpp","c++","java","python"]
-    dicto=crud.search_feature(username,'candidate_features')
-    skills=dicto["skills"]
+    db = crud()
+    doc = {}
+    docfinal = {}
+    dicto = {}
+    skill = ["c", "cpp", "c++", "java", "python"]
+    dicto = db.search_feature(username, 'candidate_features')
+    skills = dicto["skills"]
     for i in skills:
         if i not in skill:
             skills.remove(i)
-    length=len(skills)
+    length = len(skills)
 
     if len == 4:
         doc = gettestdata("C", 'test_question', 5)
