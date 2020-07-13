@@ -95,7 +95,7 @@
       padding-left:0;
       margin:0;
       list-style-type:none;
-      overflow-y:scroll;
+      overflow-y:auto;
       height:535px;
       border-top:2px solid #fff;
       border-bottom:2px solid #fff;
@@ -174,12 +174,25 @@
       text-decoration:none;
       text-transform:uppercase;
       font-weight:bold;
-      color:#6fbced;
+      color:#3b3e49;
       vertical-align:top;
       margin-left:633px;
-     
+      padding-left: 20px;
+      padding-right: 20px;
+      margin-bottom: 100px;
       display:inline-block;
-    }</style>
+    }
+    main footer a{
+	   text-decoration:none;
+	   text-transform:uppercase;
+	   font-weight:bold;
+	   color:#6fbced;
+	   vertical-align:top;
+	   margin-left:560px;
+	   margin-top:5px;
+	   display:inline-block;
+     font-size: x-large;
+   }</style>
   </head>
   <body>
     <center><h1>  Welcome {{username}}</h1></center>
@@ -213,7 +226,8 @@
       <textarea id="message_input" placeholder="Type your message"></textarea>
       <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_picture.png" alt="">
       <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_file.png" alt="">
-      <form id="msg_input_form"><input type="submit" value="send"></form>
+      <a id="msg_input_form" href="#">Send</a>
+     <!-- <form id="msg_input_form"><input type="submit" value="send"></form>-->
     </footer>
     </div>
   </body>
@@ -228,7 +242,7 @@
     });
 
   let message_input = document.getElementById('message_input');
-  document.getElementById('msg_input_form').onsubmit = function(e) {
+  document.getElementById('msg_input_form').onclick = function(e) {
     e.preventDefault();
     let message = message_input.value.trim();
     if (message.length) {
