@@ -39,12 +39,6 @@ class crud():
         result = Result(my_database.all_docs, include_docs=True)
         my_document = result[ResultByKey(key)]
 
-        for key, value in my_document[0].items():
-            if key == 'doc':
-                doc = value
-        return doc
-
-
         if len(my_document) != 0:
             for key, value in my_document[0].items():
                 if key == 'doc':

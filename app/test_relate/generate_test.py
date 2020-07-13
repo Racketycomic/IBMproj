@@ -70,3 +70,5 @@ def gettest(username):
     else:
         doc = gettestdata(skills[0], 'test_question', 20)
         return doc
+
+    {% for i in questions %}

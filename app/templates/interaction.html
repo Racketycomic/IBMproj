@@ -7,7 +7,12 @@
   </head>
   <body>
     <h1>  Welcome {{username}}</h1>
-      <div id='messages'>
+    <div id="introduction">
+    <b>  watson: </b> {{botintro}}
+    </div>
+    <div id='messages'>
+    </div>
+      <div >
         <form id = "msg_input_form">
           <div>
               <input id="message_input" type="text" name="candidate_msg" required autocomplete="off">
@@ -16,9 +21,7 @@
             <input type="submit">
           </div>
         </form>
-        <div id="introduction">
-        <b>  watson: </b> {{botintro}}
-        </div>
+
       </div>
 
   </body>
@@ -67,8 +70,7 @@
         });
       }
     }
-
-      });
+});
 
 </script>
 </html>
