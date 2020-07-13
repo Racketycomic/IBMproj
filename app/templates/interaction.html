@@ -36,13 +36,13 @@
       font-size:15px;
       vertical-align:top;
     }
-    
-    
+
+
     h2,h3{
       margin:0;
     }
-    
-    
+
+
     .status{
       width:8px;
       height:8px;
@@ -61,7 +61,7 @@
       margin-right:0;
       margin-left:7px;
     }
-    
+
     main header{
       height:110px;
       padding:30px 20px 30px 40px;
@@ -90,7 +90,7 @@
       font-weight:normal;
       color:#7e818a;
     }
-    
+
     #chat{
       padding-left:0;
       margin:0;
@@ -146,7 +146,7 @@
         border-color: transparent transparent #6fbced transparent;
         margin-left:640px;
     }
-    
+
     main footer{
       height:170px;
       padding:20px 30px 10px 20px;
@@ -169,7 +169,7 @@
       height:30px;
       cursor:pointer;
     }
-    
+
     main footer input[type="submit"]{
       text-decoration:none;
       text-transform:uppercase;
@@ -218,7 +218,7 @@
         </form>-->
         <div id="introduction">
           <li class='you'><div class="entete"><span class="status green"></span><h2> REBOS : </h2><h3>10:12AM, Today</h3></div><div class="triangle"></div><div class="message"> {{botintro}} </div></li>
-        
+
         </div>
       </div>
     </ul>
@@ -257,22 +257,21 @@
   }
 });
 
+socket.on('1st_message',function(data){
 
+          document.querySelector('#chat').innerHTML += `<li class='me'><div class="entete"><h3>10:12AM, Today: </h3><h2>${data.username}</h2><span class="status blue"></span></div><div class="triangle"></div><div class="message"> ${data.message} </div></li>`;
+
+
+})
       socket.on('recieve_message', function(data) {
         for (key in data){
-          if (key == 'user')
-          {
-            value = data[key]
-       
-        document.querySelector('#chat').innerHTML += `<li class='me'><div class="entete"><h3>10:12AM, Today: </h3><h2>${value.username}</h2><span class="status blue"></span></div><div class="triangle"></div><div class="message"> ${value.message} </div></li>`;
-   
-      }
+
         if (key == 'bot_msg') {
           botresp = data[key]
           botresp.forEach( function(item){
-          
+
           document.querySelector('#chat').innerHTML += `<li class='you'><div class="entete"><span class="status green"></span><h2> REBOS &nbsp:</h2><h3>10:12AM, Today</h3></div><div class="triangle"></div><div class="message"> ${item} </div></li>`;
-    
+
         });
       }
     }
