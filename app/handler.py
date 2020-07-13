@@ -1,12 +1,13 @@
 from app.machine_learning.watson import watsonhandler
 from app.machine_learning.data_extractor import extractor
 from app.dbservices import crud
+from app.test_relate import generate_test
+from app.machine_learning.watson_variable import first_round_flag
 
 wh = watsonhandler()
 e = extractor()
 
 class convo_handler():
-    """
 
     def server_convo_handler(self, data, email):
         assistant = wh.get_assistant()
@@ -17,6 +18,7 @@ class convo_handler():
                        "main skill": {
                            "user_defined": {
                                "flag": 1,
+                               "first_round_flag": first_round_flag
                            }
                        }
                    }
@@ -93,7 +95,7 @@ class convo_handler():
                 return data1
             else:
                 result = e.split_and_compile(contextvariable['cand_result']['Internship'])
-                result_dict = {'Internship':{
+                result_dict = {'Internship': {
                     result[0]: [result[1], result[2]]
                 }}
                 db.search_and_insert(email, 'candidate_features', result_dict, flag = 'double')
@@ -121,4 +123,3 @@ def unpack_response(response, data):
             rep = value
     data1 = {'user': data, 'bot_msg': rep}
     return data1
-"""

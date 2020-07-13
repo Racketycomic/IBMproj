@@ -69,10 +69,6 @@ def gettest(username):
         return (list(docfinal))
     else:
         doc = gettestdata(skills[0], 'test_question', 20)
-<<<<<<< HEAD
         return doc
 
-    {% for i in questions %}
-=======
         return list(doc)
->>>>>>> e903745bfa91da885205c98661e0658149002271

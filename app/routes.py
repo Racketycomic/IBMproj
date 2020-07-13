@@ -13,6 +13,7 @@ counter = 1
 hand = convo_handler()
 wh = watsonhandler()
 socketio = SocketIO(app)
+first_round_flag = ''
 
 @app.route('/')
 @app.route('/index', methods=['POST', 'GET'])
