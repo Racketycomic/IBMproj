@@ -94,7 +94,7 @@ def handle_session_joining_event(data):
 def handle_send_message(data):
     print("Sent_User: " + data['username'] + "\nMessage:" + data['message'] +
           "\nSession_id:" + data['session_id'])
-    data1 = hand.server_convo_handler(data, session['user_id'])
+    data1 = convo_handler.server_convo_handler(data, session['user_id'])
     global counter
     counter += 1
     socketio.emit('recieve_message', data1, room=data['session_id'])
