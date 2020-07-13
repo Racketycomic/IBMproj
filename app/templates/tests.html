@@ -22,9 +22,9 @@ function CheckTime() {
 }
 timer = setTimeout(CheckTime, 1000);
 
-
-  //CSS for questions
-  var q = document.getElementById("p");
+function score() {
+  // stop timer
+  clearInterval(timer);
 
   q.style.fontSize = "40px";
   q.style.textAlign = "center";
@@ -42,31 +42,21 @@ timer = setTimeout(CheckTime, 1000);
 <div id="quiz-time-left">
 
 </div>
-<form name="form" id="questions" onsubmit="return score()">
+<form name="form"  action="/evaluation" method = "post">
   {%for i in questions%}
-  <h3>{{i["question_number"].i["question"]</h3>
+  <h3>{{i["question_number"]}}.{{i["question"]}}</h3>
   {%for j in i["options"]%}
-  <input type="radio" name="q{{str(i['question_number'])}}" value="a">a. {{j}}<br>
+  <input type="radio" name="q{{i['question_number']}}" > {{j}}<br>
 
   {%endfor%}
   {%endfor%}
-  <h3>1. How many yellow cards equal a red card in football?</h3>
-  <input type="radio" name="q2" value="a">a. 1<br>
-  <input type="radio" name="q2" value="b">b. 2<br>
-  <input type="radio" name="q2" value="c">c. 3<br>
-  <input type="radio" name="q2" value="d">d. 4<br>
-
-  <h3>1. How many yellow cards equal a red card in football?</h3>
-  <input type="radio" name="q3" value="a">a. 1<br>
-  <input type="radio" name="q3" value="b">b. 2<br>
-  <input type="radio" name="q3" value="c">c. 3<br>
-  <input type="radio" name="q3" value="d">d. 4<br>
-  <br>
-  <input type="submit" id="sendA" value="Submit">
+  <p>{{questions}}<p>
+  <input type="submit"  value="Submit">
 
 
   <input type="reset" value="Clear Form">
   <br>
+  <input name = "{{questions}}">
   <p id="p"></p>
 
 

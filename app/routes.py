@@ -7,7 +7,7 @@ from flask_socketio import SocketIO, join_room
 from app.handler import convo_handler
 from app.machine_learning.data_extractor import extractor
 from app.test_relate import generate_test as gt
-
+import json
 
 db = crud()
 cand = {}
@@ -70,7 +70,7 @@ def register():
 
 
 
-@app.route('/interaction/<string:username>')
+@app.route('/interaction/<string:username>',methods =['POST','GET'])
 def interaction(username):
     assistant = wh.get_assistant()
     id = wh.get_session_id(assistant)
@@ -80,16 +80,36 @@ def interaction(username):
                            botintro=botintro)
 
 
+@app.route('/evaluation', methods = ['POST','GET'])
+def eval():
+    score = 0
+    questions = request.args['questions']
+    request.form['q1']
+    for i in range(len(questions)):
+        q1 = request.args[f'q{{i}}']
+        if q1 == questions[i]['answer']:
+            score += 1
+    return score
+
 @app.route('/test')
 def testing():
+    k = 1
     questions = gt.gettest(session['user_id'])
-    return('TEST')
+    print(questions)
 
+    for i in questions:
+        for key, value in i.items():
+            if key == 'question_number':
+                i[key] = k
+                k += 1
 
-@app.route('/logout')
-def logout():
+    return render_template('tests.html', questions = questions)
+
+'''@app.route('/logout')'''
+
+'''def logout():
     session.pop('user_id')
-    return redirect('/index')
+    return redirect('/index')'''
 
 
 @socketio.on('join_room')
@@ -104,6 +124,7 @@ def handle_session_joining_event(data):
 def handle_send_message(data):
     print("Sent_User: " + data['username'] + "\nMessage:" + data['message'] +
           "\nSession_id:" + data['session_id'])
+    socketio.emit('1st_message',data, room = data['session_id'])
     data1 = hand.server_convo_handler(data, session['user_id'])
     global counter
     counter += 1

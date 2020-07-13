@@ -4,9 +4,11 @@ from cloudant.result import Result,ResultByKey
 from flask import config,current_app
 
 
+
 class dbservice():
     def connection(self):
         client = Cloudant(current_app.config['DB_USERNAME'], current_app.config["DB_PASSWORD"], url=current_app.config["DB_URL"])
+
         try:
             client.connect()
             print("Connection succesfull")

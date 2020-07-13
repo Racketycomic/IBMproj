@@ -121,7 +121,7 @@ class convo_handler():
                 my_document = db.search_feature(email, 'candidate_features')
                 if my_document['Education'][2]['UG'][2] >= 7.0:
                     rek['first_round_flag'] = 'Pass'
-                    rek['test_link_share'] = "{{url_for('test')}}"
+                    rek['test_link_share'] = "http://127.0.0.1:5000/test"
                     db.search_and_insert(email, 'candidate_features', rek, flag ='single')
                 else:
                     my_document['first_round_flag'] = 'Fail'

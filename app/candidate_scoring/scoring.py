@@ -5,7 +5,7 @@ def score_skills(score,username):
     dicto={}
     dicto = db.search_feature(username, 'candidate_features')
     skill = ["c", "cpp", "c++", "java", "python","SQL"]
-    skills=dicto["skills"]
+    skills=dicto["Skill"]
     for i in skills:
         if i.lower() in skill:
             score=score+100
@@ -76,4 +76,3 @@ def totalscoring(username):
     score=achievement_scoring(score,username)
     score=hobbi_scoring(score,username)
     return score
-    
