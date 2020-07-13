@@ -8,6 +8,10 @@ wh = watsonhandler()
 e = extractor()
 
 class convo_handler():
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 7269151c2f7c7197cbdac21c90e9fde3c6b2b293
 
     def server_convo_handler(self, data, email):
         assistant = wh.get_assistant()
