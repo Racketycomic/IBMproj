@@ -83,33 +83,34 @@ def interaction(username):
 @app.route('/evaluation', methods = ['POST','GET'])
 def eval():
     score = 0
-    questions = request.args['questions']
-    request.form['q1']
+    questions = session.get('question_dict',None)
     for i in range(len(questions)):
-        q1 = request.args[f'q{{i}}']
+        try:
+            q1 = request.form[f'q{i+1}']
+        except:
+            continue
         if q1 == questions[i]['answer']:
             score += 1
-    return score
+    
 
 @app.route('/test')
 def testing():
     k = 1
     questions = gt.gettest(session['user_id'])
     print(questions)
-
     for i in questions:
         for key, value in i.items():
             if key == 'question_number':
                 i[key] = k
                 k += 1
+    session['question_dict'] = questions
 
     return render_template('tests.html', questions = questions)
 
-'''@app.route('/logout')'''
-
-'''def logout():
+@app.route('/logout')
+def logout():
     session.pop('user_id')
-    return redirect('/index')'''
+    return redirect('/index')
 
 
 @socketio.on('join_room')

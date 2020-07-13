@@ -3,7 +3,7 @@
 <title>multiple-choice quiz form</title>
 </head>
 <script>
-var total_seconds = 300 * 1;
+var total_seconds = 900;
 var c_minutes = parseInt(total_seconds / 60);
 var c_seconds = parseInt(total_seconds % 60);
 var timer;
@@ -46,17 +46,17 @@ function score() {
   {%for i in questions%}
   <h3>{{i["question_number"]}}.{{i["question"]}}</h3>
   {%for j in i["options"]%}
-  <input type="radio" name="q{{i['question_number']}}" > {{j}}<br>
+  <input type="radio" name="q{{i['question_number']}}" value={{j}}> {{j}}<br>
 
   {%endfor%}
   {%endfor%}
-  <p>{{questions}}<p>
+
   <input type="submit"  value="Submit">
 
 
   <input type="reset" value="Clear Form">
   <br>
-  <input name = "{{questions}}">
+
   <p id="p"></p>
 
 
