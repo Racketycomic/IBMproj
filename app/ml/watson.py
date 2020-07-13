@@ -26,7 +26,7 @@ msg = assistant.message(
     session_id=response['session_id'],
     input={
         'message_type': 'text',
-        'text': '22/04/2000',
+        'text': 'hr',
         'options' : {
             'return_context': True
         }
@@ -36,6 +36,7 @@ msg = assistant.message(
                    "main skill": {
                        "user_defined": {
                            "flag": 1,
+                           "second_round": "Pass"
                        }
                    }
                }

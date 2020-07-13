@@ -28,7 +28,7 @@ class convo_handler():
 
         response, contextvariable = wh.watson_request(data['session_id'], assistant,
                                                     data['message'], context)
-        print(contextvariable)
+
         if 'dob' not in contextvariable.keys():
             data1 = unpack_response(response, data)
             return(data1)
@@ -136,8 +136,76 @@ class convo_handler():
             data1 = unpack_response(response, data)
             return data1
 
+    def second_conversation(self, data, email):
 
-    def hr_session_handler()
+        assistant = wh.get_assistant()
+        db = crud()
+        result_dict = {}
+        context = {
+                   "skills": {
+                       "main skill": {
+                           "user_defined": {
+                               "flag": 1,
+                           }
+                       }
+                   }
+                }
+        response, contextvariable = wh.watson_request(data['session_id'], assistant,
+                                                     data['message'], context)
+        print(contextvariable)
+        if (('second_round_flag' in contextvariable.keys()) and ('cand_result' not in contextvariable.keys())):
+            data1 = unpack_response(response, data)
+            print("In if")
+            return(data1)
+
+
+        elif(('second_round_flag' in contextvariable.keys()) and ('hr1' in contextvariable['cand_result'].keys())):
+            ans = contextvariable['cand_result']['hr1']
+            result = {'ans1':ans}
+            print(result)
+            db.search_and_insert(email,'hr_question',result, flag='single')
+            data1 = unpack_response(response, data)
+            return(data1)
+
+        elif(('second_round_flag' in contextvariable) and ('hr2' in contextvariable['cand_result'])):
+            ans = contextvariable['cand_result']['hr2']
+            result = {'ans2': ans}
+            db.search_and_insert(email, 'hr_question', result, flag = 'single')
+            data1 = unpack_response(response, data)
+            return(data1)
+
+        elif(('second_round_flag' in contextvariable) and ('hr3' in contextvariable['cand_result'])):
+            ans = contextvariable['cand_result']['hr3']
+            result = {'ans3': ans}
+            db.search_and_insert(email, 'hr_question', result, flag = 'single')
+            data1 = unpack_response(response, data)
+            return(data1)
+
+        elif(('second_round_flag' in contextvariable) and ('hr4' in contextvariable['cand_result'])):
+            ans = contextvariable['cand_result']['hr4']
+            result = {'ans': ans}
+            db.search_and_insert(email, 'hr_question', result, flag = 'single')
+            data1 = unpack_response(response, data)
+            return(data1)
+
+        elif(('second_round_flag' in contextvariable) and ('hr5' in contextvariable['cand_result'])):
+            ans = contextvariable['cand_result']['hr5']
+            result = {'ans5': ans}
+            db.search_and_insert(email, 'hr_question', result, flag = 'single')
+            data1 = unpack_response(response, data)
+            return(data1)
+
+        elif(('second_round_flag' in contextvariable) and ('hr6' in contextvariable['cand_result'])):
+            ans = contextvariable['cand_result']['hr6']
+            result = {'ans6': ans}
+            db.search_and_insert(email, 'hr_question', result, flag = 'single')
+            data1 = unpack_response(response, data)
+            return(data1)
+
+        else:
+            data1 = unpack_response(response, data)
+            return(data1)
+            print("In else")
 
 def unpack_response(response, data):
     for key, value in response.items():
