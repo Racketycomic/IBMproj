@@ -4,7 +4,7 @@ import random
 
 def gettestdata(key, dbname, c):
     db = crud()
-    doc = db.search_feature('Java', 'test_question')
+    doc = db.search_feature(key, 'test_question')
     l = list(doc.items())
     shuffled_doc = random.choices(l, k=c)
     doc = dict(shuffled_doc)
@@ -30,7 +30,7 @@ def gettest(username):
         doc2 = gettestdata("Java", 'test_question', 5)
         doc3 = gettestdata("python", 'test_question', 5)
         docfinal = {**doc, **doc1, **doc2, **doc3}
-        return(docfinal)
+        return (list(docfinal))
     elif len == 3:
         j = 0
         for i in skills:
@@ -54,7 +54,7 @@ def gettest(username):
                     doc = gettestdata("python", 'test_question', 6)
             j = j+6
             docfinal.update(doc)
-        return docfinal
+        return (list(docfinal))
     elif len == 2:
         for i in skills:
             if i == "c":
@@ -66,9 +66,13 @@ def gettest(username):
             elif i == "python":
                 doc = gettestdata("python", 'test_question', 10)
             docfinal.update(doc)
-        return docfinal
+        return (list(docfinal))
     else:
         doc = gettestdata(skills[0], 'test_question', 20)
+<<<<<<< HEAD
         return doc
 
     {% for i in questions %}
+=======
+        return list(doc)
+>>>>>>> e903745bfa91da885205c98661e0658149002271

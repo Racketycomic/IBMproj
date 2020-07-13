@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>multiple-choice quiz form</title>
+</head>
+<script>
+var total_seconds = 300 * 1;
+var c_minutes = parseInt(total_seconds / 60);
+var c_seconds = parseInt(total_seconds % 60);
+var timer;
+
+function CheckTime() {
+  document.getElementById("quiz-time-left").innerHTML = 'Time Left: ' + c_minutes + ' minutes ' + c_seconds + ' seconds ';
+
+  if (total_seconds <= 0) {
+    score();
+  } else {
+    total_seconds = total_seconds - 1;
+    c_minutes = parseInt(total_seconds / 60);
+    c_seconds = parseInt(total_seconds % 60);
+    timer = setTimeout(CheckTime, 1000);
+  }
+}
+timer = setTimeout(CheckTime, 1000);
+
+
+  //CSS for questions
+  var q = document.getElementById("p");
+
+  q.style.fontSize = "40px";
+  q.style.textAlign = "center";
+  q.innerHTML = "You got " + points + " out of " + total +
+    "<br />" +
+    "you used " + (300 - Math.floor(total_seconds)) + " seconds";
+
+  return false;
+}
+</script>
+<body bgcolor=#ffffff>
+
+<h3>Vocabulary Quiz I</h3>
+
+<div id="quiz-time-left">
+
+</div>
+<form name="form" id="questions" onsubmit="return score()">
+  {%for i in questions%}
+  <h3>{{i["question_number"].i["question"]</h3>
+  {%for j in i["options"]%}
+  <input type="radio" name="q{{str(i['question_number'])}}" value="a">a. {{j}}<br>
+
+  {%endfor%}
+  {%endfor%}
+  <h3>1. How many yellow cards equal a red card in football?</h3>
+  <input type="radio" name="q2" value="a">a. 1<br>
+  <input type="radio" name="q2" value="b">b. 2<br>
+  <input type="radio" name="q2" value="c">c. 3<br>
+  <input type="radio" name="q2" value="d">d. 4<br>
+
+  <h3>1. How many yellow cards equal a red card in football?</h3>
+  <input type="radio" name="q3" value="a">a. 1<br>
+  <input type="radio" name="q3" value="b">b. 2<br>
+  <input type="radio" name="q3" value="c">c. 3<br>
+  <input type="radio" name="q3" value="d">d. 4<br>
+  <br>
+  <input type="submit" id="sendA" value="Submit">
+
+
+  <input type="reset" value="Clear Form">
+  <br>
+  <p id="p"></p>
+
+
+</form>
+</body>
+</html>
