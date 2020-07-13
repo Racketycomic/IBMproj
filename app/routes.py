@@ -6,6 +6,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_socketio import SocketIO, join_room
 from app.handler import convo_handler
 from app.machine_learning.data_extractor import extractor
+from app.test_relate import generate_test as gt
+
 
 db = crud()
 cand = {}
@@ -61,6 +63,8 @@ def register():
                 cdict = {'_id': email, 'username': username, 'password': hash,
                          'email': email}
                 db.insert_feature(cdict, 'login_credentials')
+                result = {'_id': session['user_id'], 'username': username, 'first_round_flag':'','test_link_share':''}
+                db.insert_feature(result, 'candidate_features')
                 return redirect('/login')
     return render_template('register.html')
 
@@ -75,6 +79,11 @@ def interaction(username):
     return render_template('interaction.html', username=username, session_id=id,
                            botintro=botintro)
 
+
+@app.route('/test')
+def testing():
+    questions = gt.gettest(session['user_id'])
+    return('TEST')
 
 
 @app.route('/logout')
