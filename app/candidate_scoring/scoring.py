@@ -5,7 +5,11 @@ def score_skills(score,username):
     dicto={}
     dicto = db.search_feature(username, 'candidate_features')
     skill = ["c", "cpp", "c++", "java", "python","SQL"]
+<<<<<<< HEAD
+    skills=dicto["Skills"]
+=======
     skills=dicto["Skill"]
+>>>>>>> e92a0b0d0c8260e6ad49238eb85e403ba856bdc4
     for i in skills:
         if i.lower() in skill:
             score=score+100
@@ -79,3 +83,25 @@ def totalscoring(username):
     score = achievement_scoring(score,username)
     score = hobbi_scoring(score,username)
     return score
+    
+def personality_insight(dicto,email):
+    db=crud()
+    new_dicto={}
+    flag=0
+    for i in dicto:
+        if i["trait_name"]=="Openness" and (i["percentile"]>0.55 and i["percentile"]<0.9):
+            flag+=1 
+        elif i["trait_name"]=="Conscientiousness" and (i["percentile"]>0.5 and i["percentile"]<0.9) :
+            flag+=1 
+        elif i["trait_name"]=="Extraversion" and (i["percentile"]>0.45 and i["percentile"]<0.85) :
+            flag+=1 
+        elif i["trait_name"]=="Agreeableness" and (i["percentile"]>0.40 and i["percentile"]<0.85) :
+            flag+=1 
+        elif i["trait_name"]=="Emotional range" and (i["percentile"]>0.40 and i["percentile"]<0.75) :
+            flag+=1 
+    if flag >= 4:
+        new_dicto={"Personality":dicto}
+        db.search_and_insert(email,'candidate_features',new_dicto,"single")
+        return "Congratulations!, you have been shortlisted for the interview process, further information will be mailed to you."
+    else:
+        return "We regret to inform you that you were not shortlisted for the job, we hope you find success in your life, Thank you."
