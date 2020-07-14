@@ -154,7 +154,8 @@ def report_generate():
     res_str = res_str[1:]
     print(res_str)
     insights_dict = pp.get_personality_insights(res_str)
-    
+    result_str = sc.personality_insight(insights_dict, session['user_id'])
+    return(result_str)
 
 @app.route('/logout')
 def logout():
