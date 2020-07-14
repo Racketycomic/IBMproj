@@ -262,7 +262,11 @@
 socket.on('1st_message',function(data){
 
           document.querySelector('#chat').innerHTML += `<li class='me'><div class="entete"><h3>10:12AM, Today: </h3><h2>${data.username}</h2><span class="status blue"></span></div><div class="triangle"></div><div class="message"> ${data.message} </div></li>`;
-
+          document.querySelector("#chat").scrollTo({
+  left: 0,
+  top: document.querySelector("#chat").scrollHeight - document.querySelector("#chat").clientHeight,
+  behavior: 'smooth'
+}); 
 })
       socket.on('recieve_message', function(data) {
         for (key in data){
@@ -272,7 +276,11 @@ socket.on('1st_message',function(data){
           botresp.forEach( function(item){
 
           document.querySelector('#chat').innerHTML += `<li class='you'><div class="entete"><span class="status green"></span><h2> REBOS &nbsp:</h2><h3>10:12AM, Today</h3></div><div class="triangle"></div><div class="message"> ${item} </div></li>`;
-
+          document.querySelector("#chat").scrollTo({
+  left: 0,
+  top: document.querySelector("#chat").scrollHeight - document.querySelector("#chat").clientHeight,
+  behavior: 'smooth'
+}); 
         });
       }
     }

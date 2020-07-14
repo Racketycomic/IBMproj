@@ -4,7 +4,7 @@ import json
 from flask import current_app
 
 
-def get_personality_insights(text, samp):
+def get_personality_insights(samp):
     authenticator = IAMAuthenticator(current_app.config['INSIGHTS_API'])
     personality_insights = PersonalityInsightsV3(
         version = current_app.config['INSIGHTS_VER'],
