@@ -13,7 +13,12 @@
             {% for key,value in features.items()%}
             <tr style="border: solid;">
                 <td style="border: solid;">{{key}}</td>
-                 {% if value is iterable %}
+                {% if value is string %}
+                  
+                  <td style="border: solid;">{{value}}</td>
+                  
+                  {% elif value is iterable  %}
+         
                     {%for i in value %}
                    <td style="border: solid;">{{i}}</td>
                     {% endfor %}
