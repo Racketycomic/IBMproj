@@ -5,7 +5,7 @@ import random
 def gettestdata(key, dbname, c):
     db = crud()
     doc = db.search_feature(key, 'test_question')
-    l = list(doc.items())
+    l = doc
     shuffled_doc = random.choices(l, k=c)
     doc = dict(shuffled_doc)
     return doc
@@ -18,7 +18,7 @@ def gettest(username):
     dicto = {}
     skill = ["c", "cpp", "c++", "java", "python"]
     dicto = db.search_feature(username, 'candidate_features')
-    skills = dicto["skills"]
+    skills = dicto["Skills"]
     for i in skills:
         if i not in skill:
             skills.remove(i)
