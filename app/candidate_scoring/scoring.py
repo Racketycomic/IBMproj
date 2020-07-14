@@ -25,7 +25,7 @@ def score_internships(score,username):
     for i in compney:
         if i.lower() in companies1:
             score=score+300
-        elif i,lower() in companies2:
+        elif i.lower() in companies2:
             score=score+200
         else:
             score=score+100

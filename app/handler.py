@@ -137,7 +137,7 @@ class convo_handler():
             return data1
 
 
-    def hr_session_handler()
+
 
 def unpack_response(response, data):
     for key, value in response.items():
