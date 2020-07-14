@@ -5,11 +5,7 @@ def score_skills(score,username):
     dicto={}
     dicto = db.search_feature(username, 'candidate_features')
     skill = ["c", "cpp", "c++", "java", "python","SQL"]
-<<<<<<< HEAD
-    skills=dicto["Skills"]
-=======
     skills=dicto["Skill"]
->>>>>>> e92a0b0d0c8260e6ad49238eb85e403ba856bdc4
     for i in skills:
         if i.lower() in skill:
             score=score+100
