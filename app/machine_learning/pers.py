@@ -27,3 +27,4 @@ def get_personality_insights(text, samp):
         res.append(pseudo_dict)
 
     return res
+    

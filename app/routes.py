@@ -154,6 +154,7 @@ def report_generate():
     res_str = res_str[1:]
     print(res_str)
     insights_dict = pp.get_personality_insights(res_str)
+    
 
 @app.route('/logout')
 def logout():
