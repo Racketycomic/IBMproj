@@ -8,6 +8,7 @@ from app.handler import convo_handler
 from app.machine_learning.data_extractor import extractor
 from app.test_relate import generate_test as gt
 from app.candidate_scoring import scoring as sc
+from app.machine_learning import pers as pp
 import json
 
 db = crud()
@@ -125,7 +126,8 @@ def eval():
     response = response['response']
     return render_template('interaction2.html', response = response , session_id =id, username = username)
 
-@app.route('/test')
+
+@app.route('/test', methods=['POST', 'GET'])
 def testing():
     k = 1
     questions = gt.gettest(session['user_id'])
@@ -138,6 +140,20 @@ def testing():
     session['question_dict'] = questions
 
     return render_template('tests.html', questions = questions)
+
+
+@app.route('/result', methods=['POST', 'GET'])
+def report_generate():
+    init_doc = db.search_feature(session['user_id'],'hr_question')
+    res_str = ''
+    for i in range(len(init_doc)):
+        try:
+            res_str += '.' + init_doc[f'ans{i}']
+        except:
+            pass
+    res_str = res_str[1:]
+    print(res_str)
+    insights_dict = pp.get_personality_insights(res_str)
 
 @app.route('/logout')
 def logout():

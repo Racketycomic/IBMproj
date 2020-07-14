@@ -183,7 +183,7 @@ class convo_handler():
 
         elif(('second_round_flag' in contextvariable) and ('hr4' in contextvariable['cand_result'])):
             ans = contextvariable['cand_result']['hr4']
-            result = {'ans': ans}
+            result = {'ans4': ans}
             db.search_and_insert(email, 'hr_question', result, flag = 'single')
             data1 = unpack_response(response, data)
             return(data1)

@@ -58,7 +58,7 @@ for i in arr:
                 resultdict['response'] = [value4]
 
 print(resultdict)
-if msg['output']['generic'] not None:
+
 arr = msg['context']['skills']['main skill']['user_defined']
 print(arr)
 for key1, value1 in msg.items():
