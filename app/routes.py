@@ -7,6 +7,7 @@ from flask_socketio import SocketIO, join_room
 from app.handler import convo_handler
 from app.machine_learning.data_extractor import extractor
 from app.test_relate import generate_test as gt
+from app.candidate_scoring import scoring as sc
 import json
 
 db = crud()
@@ -91,7 +92,38 @@ def eval():
             continue
         if q1 == questions[i]['answer']:
             score += 1
-    
+    final_score = sc.totalscoring(session['user_id'])
+    if final_score > 1500:
+        result = {'_id': session['user_id']}
+        flag = 'Pass'
+        db.insert_feature(result, 'hr_question')
+    else:
+        result = {'_id': session['user_id']}
+        flag = 'Fail'
+        db.insert_feature(result, 'hr_question')
+
+    print("SEEE THE SCORE HERE",str(score),str(final_score))
+    print(flag)
+    assistant = wh.get_assistant()
+    id = wh.get_session_id(assistant)
+    rek = db.search_feature(session['user_id'], 'login_credentials')
+    username = rek['username']
+    context = {
+               "skills": {
+                   "main skill": {
+                       "user_defined": {
+                           "flag": 1,
+                           "second_round_flag": flag,
+                           "username": username
+                       }
+                   }
+               }
+            }
+
+    response, contextvariable = wh.watson_request(id, assistant,
+                                                    'hr', context)
+    response = response['response']
+    return render_template('interaction2.html', response = response , session_id =id, username = username)
 
 @app.route('/test')
 def testing():
@@ -127,6 +159,17 @@ def handle_send_message(data):
           "\nSession_id:" + data['session_id'])
     socketio.emit('1st_message',data, room = data['session_id'])
     data1 = hand.server_convo_handler(data, session['user_id'])
+    global counter
+    counter += 1
+    socketio.emit('recieve_message', data1, room=data['session_id'])
+
+@socketio.on('send_message2')
+def handle_send_message(data):
+    print("Sent_User: " + data['username'] + "\nMessage:" + data['message'] +
+          "\nSession_id:" + data['session_id'])
+    socketio.emit('1st_message',data, room = data['session_id'])
+    data1 = hand.second_conversation(data, session['user_id'])
+    print("Inside msg2")
     global counter
     counter += 1
     socketio.emit('recieve_message', data1, room=data['session_id'])
