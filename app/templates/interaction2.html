@@ -216,10 +216,12 @@
             <input type="submit" value="send">
           </div>
         </form>-->
+				{% for i in response %}
         <div id="introduction">
-          <li class='you'><div class="entete"><span class="status green"></span><h2> REBOS : </h2><h3>10:12AM, Today</h3></div><div class="triangle"></div><div class="message"> {{botintro}} </div></li>
+          <li class='you'><div class="entete"><span class="status green"></span><h2> REBOS : </h2><h3>10:12AM, Today</h3></div><div class="triangle"></div><div class="message"> {{i}} </div></li>
 
         </div>
+				{% endfor %}
       </div>
     </ul>
     <footer>
@@ -246,7 +248,7 @@
     e.preventDefault();
     let message = message_input.value.trim();
     if (message.length) {
-      socket.emit('send_message', {
+      socket.emit('send_message2', {
         username : "{{username}}",
         session_id : "{{session_id}}",
         message : message
@@ -260,7 +262,6 @@
 socket.on('1st_message',function(data){
 
           document.querySelector('#chat').innerHTML += `<li class='me'><div class="entete"><h3>10:12AM, Today: </h3><h2>${data.username}</h2><span class="status blue"></span></div><div class="triangle"></div><div class="message"> ${data.message} </div></li>`;
-
 
 })
       socket.on('recieve_message', function(data) {

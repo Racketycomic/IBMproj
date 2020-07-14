@@ -5,33 +5,43 @@ import random
 def gettestdata(key, dbname, c):
     db = crud()
     doc = db.search_feature(key, 'test_question')
+<<<<<<< HEAD
     l = doc
     shuffled_doc = random.choices(l, k=c)
     doc = dict(shuffled_doc)
+=======
+    l = doc['questions']
+    shuffled_doc = random.sample(l, k=c)
+    doc = shuffled_doc
+>>>>>>> e92a0b0d0c8260e6ad49238eb85e403ba856bdc4
     return doc
 
 
 def gettest(username):
     db = crud()
-    doc = {}
-    docfinal = {}
+    doc = []
+    docfinal = []
     dicto = {}
     skill = ["c", "cpp", "c++", "java", "python"]
     dicto = db.search_feature(username, 'candidate_features')
+<<<<<<< HEAD
     skills = dicto["Skills"]
+=======
+    skills = dicto["Skill"]
+>>>>>>> e92a0b0d0c8260e6ad49238eb85e403ba856bdc4
     for i in skills:
         if i not in skill:
             skills.remove(i)
     length = len(skills)
 
-    if len == 4:
+    if length == 4:
         doc = gettestdata("C", 'test_question', 5)
         doc1 = gettestdata("CPP", 'test_question', 5)
         doc2 = gettestdata("Java", 'test_question', 5)
         doc3 = gettestdata("python", 'test_question', 5)
-        docfinal = {**doc, **doc1, **doc2, **doc3}
-        return (list(docfinal))
-    elif len == 3:
+        docfinal = doc+doc1+doc2+doc3
+        return (docfinal)
+    elif length == 3:
         j = 0
         for i in skills:
             if j == 12:
@@ -53,9 +63,9 @@ def gettest(username):
                 elif i == "python":
                     doc = gettestdata("python", 'test_question', 6)
             j = j+6
-            docfinal.update(doc)
-        return (list(docfinal))
-    elif len == 2:
+            docfinal += doc
+        return (docfinal)
+    elif length == 2:
         for i in skills:
             if i == "c":
                 doc = gettestdata("C", 'test_question', 10)
@@ -65,8 +75,8 @@ def gettest(username):
                 doc = gettestdata("Java", 'test_question', 10)
             elif i == "python":
                 doc = gettestdata("python", 'test_question', 10)
-            docfinal.update(doc)
-        return (list(docfinal))
+            docfinal += doc
+        return (docfinal)
     else:
         doc = gettestdata(skills[0], 'test_question', 20)
-        return list(doc)
+        return doc

@@ -4,9 +4,11 @@ from cloudant.result import Result,ResultByKey
 from flask import config,current_app
 
 
+
 class dbservice():
     def connection(self):
         client = Cloudant(current_app.config['DB_USERNAME'], current_app.config["DB_PASSWORD"], url=current_app.config["DB_URL"])
+
         try:
             client.connect()
             print("Connection succesfull")
@@ -38,12 +40,6 @@ class crud():
         my_database = client[database_name]
         result = Result(my_database.all_docs, include_docs=True)
         my_document = result[ResultByKey(key)]
-
-        for key, value in my_document[0].items():
-            if key == 'doc':
-                doc = value
-        return doc
-
 
         if len(my_document) != 0:
             for key, value in my_document[0].items():

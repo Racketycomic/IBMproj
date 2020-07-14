@@ -1,9 +1,26 @@
 <html>
 <head>
 <title>multiple-choice quiz form</title>
+<html lang="en" class="fontawesome-i2svg-active fontawesome-i2svg-complete"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>REBOS</title>
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="{{url_for('static',filename='assets/img/favicon.ico')}}">
+  <!-- Font Awesome icons (free version)-->
+  <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+  <!-- Google fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css">
+  <!-- Third party plugin CSS-->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet">
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link href="{{url_for('static',filename='css/styles1.css')}}" rel="stylesheet">
 </head>
 <script>
-var total_seconds = 300 * 1;
+var total_seconds = 900;
 var c_minutes = parseInt(total_seconds / 60);
 var c_seconds = parseInt(total_seconds % 60);
 var timer;
@@ -22,9 +39,9 @@ function CheckTime() {
 }
 timer = setTimeout(CheckTime, 1000);
 
-
-  //CSS for questions
-  var q = document.getElementById("p");
+function score() {
+  // stop timer
+  clearInterval(timer);
 
   q.style.fontSize = "40px";
   q.style.textAlign = "center";
@@ -35,41 +52,117 @@ timer = setTimeout(CheckTime, 1000);
   return false;
 }
 </script>
-<body bgcolor=#ffffff>
+<style>@media (min-width: 992px) {
+  #mainNav {
+    box-shadow: none;
+    background-color: #cecece;
+  }}
+  .container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
-<h3>Vocabulary Quiz I</h3>
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
 
-<div id="quiz-time-left">
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
 
-</div>
-<form name="form" id="questions" onsubmit="return score()">
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+  </style>
+<body id="page-top">
+  
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+
+    <div class="container">
+        <p class="navbar-brand js-scroll-trigger" id="quiz-time-left" style="color: black;"></p>
+    </div>    
+        
+    
+</nav>
+
+
+<section class='page-section'>
+<h2 style="padding-left: 150px;">REBOS skill test</h2>
+
+<div>
+<form name="form"  action="/evaluation" method = "post">
+  
   {%for i in questions%}
-  <h3>{{i["question_number"].i["question"]</h3>
+  <h3 style="padding-left: 150px;">{{i["question_number"]}}.{{i["question"]}}</h3>
   {%for j in i["options"]%}
-  <input type="radio" name="q{{str(i['question_number'])}}" value="a">a. {{j}}<br>
-
+  <label class="container"><input type="radio" name="q{{i['question_number']}}" value={{j}}> {{j}}<br>
+  <span class="checkmark"></span>
+</label>
   {%endfor%}
   {%endfor%}
-  <h3>1. How many yellow cards equal a red card in football?</h3>
-  <input type="radio" name="q2" value="a">a. 1<br>
-  <input type="radio" name="q2" value="b">b. 2<br>
-  <input type="radio" name="q2" value="c">c. 3<br>
-  <input type="radio" name="q2" value="d">d. 4<br>
-
-  <h3>1. How many yellow cards equal a red card in football?</h3>
-  <input type="radio" name="q3" value="a">a. 1<br>
-  <input type="radio" name="q3" value="b">b. 2<br>
-  <input type="radio" name="q3" value="c">c. 3<br>
-  <input type="radio" name="q3" value="d">d. 4<br>
-  <br>
-  <input type="submit" id="sendA" value="Submit">
-
-
+</div>
+<div>
+  <center><input  type="submit" class="btn btn-success" value="Submit"></center>
+</div>
+<!--<div>
   <input type="reset" value="Clear Form">
   <br>
-  <p id="p"></p>
+</div>-->
+ 
 
 
 </form>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 </body>
 </html>
