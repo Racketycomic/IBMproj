@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table style="border: solid;" >
+
+      <tbody style="border: solid;">
+            {% for key,value in features.items()%}
+            <tr style="border: solid;">
+                <td style="border: solid;">{{key}}</td>
+                 {% if value is iterable %}
+                    {%for i in value %}
+                   <td style="border: solid;">{{i}}</td>
+                    {% endfor %}
+                     {% else %}
+
+                  <td style="border: solid;">{{value}}</td>
+                    {% endif %}
+            </tr>
+
+              {% endfor %}
+
+ <!--<tr style="border: solid;">
+                    {% for key,value in features.items()%}
+                <td style="border: solid;">{{value}}</td>
+              {% endfor %}
+            </tr> -->
+
+        </tbody>
+    </table>
+</body>
+</html>

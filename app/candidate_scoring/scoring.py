@@ -6,7 +6,7 @@ def score_skills(score,username):
     dicto = db.search_feature(username, 'candidate_features')
     skill = ["c", "cpp", "c++", "java", "python","SQL"]
 
-    skills=dicto["Skills"]
+
 
     skills=dicto["Skill"]
 
@@ -89,16 +89,16 @@ def personality_insight(dicto,email):
     new_dicto={}
     flag=0
     for i in dicto:
-        if i["trait_name"]=="Openness" and (i["percentile"]>0.55 and i["percentile"]<0.9):
-            flag+=1
-        elif i["trait_name"]=="Conscientiousness" and (i["percentile"]>0.5 and i["percentile"]<0.9) :
-            flag+=1
-        elif i["trait_name"]=="Extraversion" and (i["percentile"]>0.45 and i["percentile"]<0.85) :
-            flag+=1
+        if i["trait_name"] == "Openness" and (i["percentile"] > 0.55 and i["percentile"] < 0.9):
+            flag +=1
+        elif i["trait_name"] == "Conscientiousness" and (i["percentile"] > 0.5 and i["percentile"] < 0.9) :
+            flag +=1
+        elif i["trait_name"] == "Extraversion" and (i["percentile"] >0.45 and i["percentile"] < 0.85) :
+            flag +=1
         elif i["trait_name"]=="Agreeableness" and (i["percentile"]>0.40 and i["percentile"]<0.85) :
-            flag+=1
+            flag +=1
         elif i["trait_name"]=="Emotional range" and (i["percentile"]>0.40 and i["percentile"]<0.75) :
-            flag+=1
+            flag +=1
     if flag >= 4:
         new_dicto={"Personality":dicto}
         db.search_and_insert(email,'candidate_features',new_dicto,"single")

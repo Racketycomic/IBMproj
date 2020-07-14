@@ -6,10 +6,6 @@ def gettestdata(key, dbname, c):
     db = crud()
     doc = db.search_feature(key, 'test_question')
 
-    l = doc
-    shuffled_doc = random.choices(l, k=c)
-    doc = dict(shuffled_doc)
-
     l = doc['questions']
     shuffled_doc = random.sample(l, k=c)
     doc = shuffled_doc
@@ -24,8 +20,6 @@ def gettest(username):
     dicto = {}
     skill = ["c", "cpp", "c++", "java", "python"]
     dicto = db.search_feature(username, 'candidate_features')
-
-    skills = dicto["Skills"]
 
     skills = dicto["Skill"]
 

@@ -1,4 +1,4 @@
-from flask import redirect, render_template,session,request,logging
+from flask import redirect, render_template, session, request, make_response
 from app.dbservices import crud
 from app import app
 from app.machine_learning.watson import watsonhandler
@@ -10,6 +10,7 @@ from app.test_relate import generate_test as gt
 from app.candidate_scoring import scoring as sc
 from app.machine_learning import pers as pp
 import json
+import pdfkit
 
 db = crud()
 cand = {}
@@ -145,6 +146,7 @@ def testing():
 @app.route('/result', methods=['POST', 'GET'])
 def report_generate():
     init_doc = db.search_feature(session['user_id'],'hr_question')
+    features = db.search_feature(session['user_id'],'candidate_features')
     res_str = ''
     for i in range(len(init_doc)):
         try:
@@ -155,7 +157,17 @@ def report_generate():
     print(res_str)
     insights_dict = pp.get_personality_insights(res_str)
     result_str = sc.personality_insight(insights_dict, session['user_id'])
-    return(result_str)
+    del features['_rev']
+    del features['first_round_flag']
+    del features['test_link_share']
+    path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
+    config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
+    rendered = render_template('result.html', features = features)
+    pdf = pdfkit.from_string(rendered, False, configuration=config)
+    response = make_response(pdf)
+    response.headers['Content-Type'] = 'application/pdf'
+    response.headers['Content-Disposition'] = f"attachement; filename = {features['_id']}.pdf"
+    return(response)
 
 @app.route('/logout')
 def logout():

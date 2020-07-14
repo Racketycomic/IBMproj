@@ -125,17 +125,20 @@ class convo_handler():
                     db.search_and_insert(email, 'candidate_features', rek, flag ='single')
                 else:
                     my_document['first_round_flag'] = 'Fail'
+                    rek = contextvariable['cand_result']['Achievement']
                     db.search_and_insert(email, 'candidate_features', rek, flag ='single')
                 data1 = unpack_response(response, data)
                 return data1
             else:
                 result_dict = {'Achievement': contextvariable['cand_result']['Achievement']}
+                db.search_and_insert(email, 'candidate_features', result_dict, flag ='single')
                 data1 = unpack_response(response, data)
                 return data1
         else:
             data1 = unpack_response(response, data)
             return data1
 
+        
     def second_conversation(self, data, email):
 
         assistant = wh.get_assistant()
