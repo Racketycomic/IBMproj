@@ -13,7 +13,7 @@
             {% for key,value in features.items()%}
             <tr style="border: solid;">
                 <td style="border: solid;">{{key}}</td>
-                 {% if value is iterable %}
+                 {% if value is iterable and not string %}
                     {%for i in value %}
                    <td style="border: solid;">{{i}}</td>
                     {% endfor %}
