@@ -66,7 +66,7 @@ def register():
                 cdict = {'_id': email, 'username': username, 'password': hash,
                          'email': email}
                 db.insert_feature(cdict, 'login_credentials')
-                result = {'_id': session['user_id'], 'username': username, 'phone':phone ,'first_round_flag':'','test_link_share':''}
+                result = {'_id': email, 'username': username, 'phone':phone ,'first_round_flag':'','test_link_share':''}
                 db.insert_feature(result, 'candidate_features')
                 return redirect('/login')
     return render_template('register.html')
@@ -160,7 +160,7 @@ def report_generate():
     print(res_str)
     insights_dict = pp.get_personality_insights(res_str)
     result_str = sc.personality_insight(insights_dict, session['user_id'])
-    '''final_result = {}
+    final_result = {}
     final_result['email'] = features['_id']
     final_result['name'] = features['username']
 
@@ -180,57 +180,20 @@ def report_generate():
     print(json.dumps(final_result,indent=2))
     final_result['Skills'] = features['Skill']
     final_result['Hobbies'] = features['Hobbies']
-<<<<<<< HEAD
-    final_result['Achievement'] = features['Achievement']'''
-    dicto={}
-    project =[]
-    internship =[]
-    final_result = {}
-=======
     final_result['Achievement'] = features['Achievement']
     dicto1={}
     project =[]
     internship =[]
     person = []
->>>>>>> 751db594dfa710f274e776b84d4135ce8552bf9c
-    personality = { "personality":[
-          {
-            "trait_name": "Openness",
-            "percentile": 0.9986600458445904
-          },
-          {
-            "trait_name": "Conscientiousness",
-            "percentile": 0.4746155356228033
-          },
-          {
-            "trait_name": "Extraversion",
-            "percentile": 0.591073529309843
-          },
-          {
-            "trait_name": "Agreeableness",
-            "percentile": 0.07009747267117938
-          },
-          {
-            "trait_name": "Emotional range",
-            "percentile": 0.39857247303532706
-          }
-        ]}
-    final_result['personality'] = personality['personality']
-<<<<<<< HEAD
 
-=======
-    print(personality.items())
-
-    for key,value in personality.items():
-        if key == 'personality':
+    for key,value in features.items():
+        if key == 'Personality':
             for i in value:
-
                 dicto1[i["trait_name"]] = i["percentile"]
-    
-    print(dicto1)
+
+
     dicto = {}
     print(features.items())
->>>>>>> 751db594dfa710f274e776b84d4135ce8552bf9c
     for key,value in features.items():
         if key == 'Project':
             for i in value:
@@ -254,16 +217,15 @@ def report_generate():
 
     path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
-<<<<<<< HEAD
-    rendered = render_template('result1.html', final_result = features, project=project, internship=internship)
-=======
-    rendered = render_template('result.html', final_result = final_result, project=project, internship=internship, person = dicto1)
->>>>>>> 751db594dfa710f274e776b84d4135ce8552bf9c
+    rendered = render_template('result.html', final_result = final_result, project=project, internship=internship, person = dicto1,resultstring = result_str,features = features)
     pdf = pdfkit.from_string(rendered, False, configuration=config)
     response = make_response(pdf)
     response.headers['Content-Type'] = 'application/pdf'
     response.headers['Content-Disposition'] = f"attachement; filename = {features['_id']}.pdf"
     return(response)
+
+
+
 
 
 @app.route('/logout')
@@ -286,8 +248,6 @@ def handle_send_message(data):
           "\nSession_id:" + data['session_id'])
     socketio.emit('1st_message',data, room = data['session_id'])
     data1 = hand.server_convo_handler(data, session['user_id'])
-    global counter
-    counter += 1
     socketio.emit('recieve_message', data1, room=data['session_id'])
 
 @socketio.on('send_message2')

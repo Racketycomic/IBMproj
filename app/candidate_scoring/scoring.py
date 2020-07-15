@@ -102,6 +102,10 @@ def personality_insight(dicto,email):
     if flag >= 4:
         new_dicto = {"Personality": dicto}
         db.search_and_insert(email,'candidate_features',new_dicto,"single")
-        return "Congratulations!, you have been shortlisted for the interview process, further information will be mailed to you."
+        rest = "Congratulations!, you have been shortlisted for the interview process, further information will be mailed to you."
+        return rest
     else:
-        return "We regret to inform you that you were not shortlisted for the job, we hope you find success in your life, Thank you."
+        new_dicto = {"Personality": dicto}
+        db.search_and_insert(email,'candidate_features',new_dicto,"single")
+        rest = "We regret to inform you that you were not shortlisted for the job, we hope you find success in your life, Thank you."
+        return rest

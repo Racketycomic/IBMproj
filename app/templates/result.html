@@ -6,29 +6,30 @@
     <title>Document</title>
 </head>
 <body>
-    
-        <p>Basic details</p>
+
+      <h2> <p>Basic details</p> </h2>
         <ul> <li>Name : {{ final_result['name'] }}</li>
             <li>Email : {{final_result['email']}}</li>
-            <li>Phone : phone here </li>
+            <li>Phone : {{features['phone']}} </li>
         </ul>
 <hr>
-<p>Education</p>
-<ul>10th Standard
+<h2><p>Education</p></h2>
+
+<ul> <h3>10th Standard</h3>
     <li>School : {{final_result['10th standard'][3]['School name']}}</li>
     <li>Passout : {{final_result['10th standard'][0]['Year']}}</li>
     <li>Percentage : {{final_result['10th standard'][2]['Marks']}}</li>
     <li>Board : {{final_result['10th standard'][1]['Board']}}</li>
 </ul>
 
-<ul>12th Standard
+<ul><h3>12th Standard</h3>
     <li>College : {{final_result['12th standard'][3]['College name']}}</li>
     <li>Passout : {{final_result['12th standard'][0]['Year']}}</li>
     <li>Percentage : {{final_result['12th standard'][2]['Marks']}}</li>
     <li>Board : {{final_result['12th standard'][1]['Board']}}</li>
 </ul>
 
-<ul>BE
+<ul><h3> BE </h3>
     <li>Institute : {{final_result['UG'][3]['College name']}}</li>
     <li>Passout : {{final_result['UG'][0]['Year']}}</li>
     <li>Percentage : {{final_result['UG'][2]['CGPA']}}</li>
@@ -36,7 +37,7 @@
 </ul>
 <hr>
 
-<p>Skills</p>
+<h2><p>Skills</p></h2>
 <ul>
     {% for i in final_result['Skills'] %}
     <li>{{i}}</li>
@@ -45,7 +46,7 @@
 
 <hr>
 
-<p>Project</p>
+ <h2><p>Project</p></h2>
 <ul>{% for i in project %}
     {% for key,value in i.items() %}
     <li>{{key}} : {{value}}</li>
@@ -55,26 +56,26 @@
 
 <hr>
 
-<p>Internships</p>
+ <h2><p>Internships</p></h2>
 <ul>{% for i in internship %}
     {% for key,value in i.items() %}
-    <li>{{key}} : {{value}}</li>
+     <li>{{key}} : {{value}}</li>
     {% endfor %}<br>
     {% endfor %}
 </ul>
 
 <hr>
 
-<p>Hobbies</p>
+ <h2><p>Hobbies</p></h2>
 <ul>
     {% for i in final_result['Hobbies'] %}
-    <li>{{i}}</li>
+     <li>{{i}}</li>
     {% endfor %}
 </ul>
 
 <hr>
 
-<p>Achievements</p>
+ <h2><p>Achievements</p></h2>
 <ul>
     {% for i in final_result['Achievement'] %}
     <li>{{i}}</li>
@@ -83,15 +84,22 @@
 
 <hr>
 
-<p>Personality Insights </p>
+ <h2><p>Personality Insights </p></h2>
 <ul>
     {% for key,value in person.items() %}
-    <li>{{key}} : {{value}}</li>
+     <li>{{key}} : {{value}}</li>
     {% endfor %}<br>
-    
+
 </ul>
+
+<hr>
+ <h2><p>Score</p></h2>
+<h2>Test Score : {{features['test_score']}} </h2> <br>
+ <h2> Resume Score : {{features['resume_score']}} </h2>
+
+<hr>
+<h1>{{resultstring}}</h1>
 
 
 </body>
 </html>
-

@@ -26,12 +26,10 @@ class crud():
         c = dbservice()
         client = c.connection()
         my_database = client[database_name]
-        try:
-            my_document = my_database.create_document(candict)
-            my_document.save()
-            print("User inserted")
-        except:
-            print("Insertion failed")
+        my_document = my_database.create_document(candict)
+        my_document.save()
+        print("User inserted")
+
         client.disconnect()
 
     def search_feature(self, key, database_name): #key=languvage, #database_name
