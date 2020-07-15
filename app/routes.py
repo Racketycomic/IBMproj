@@ -198,9 +198,9 @@ def report_generate():
         if key == 'Project':
             for i in value:
                 for key1, value1 in i.items():
-                    dicto["project_title"] = key1
-                    dicto["project_desc"] = value1[1]
-                    dicto["project_tech"] = value1[0]
+                    dicto["Title"] = key1
+                    dicto['Description'] = value1[1]
+                    dicto["Technology used"] = value1[0]
                     project.append(dicto.copy())
 
     dicto ={}
@@ -209,9 +209,9 @@ def report_generate():
         if key == 'Internship':
             for i in value:
                 for key1, value1 in i.items():
-                    dicto["project_title"] = key1
-                    dicto["project_desc"] = value1[1]
-                    dicto["project_tech"] = value1[0]
+                    dicto["Organization name"] = key1
+                    dicto["Description"] = value1[1]
+                    dicto["Duration"] = value1[0]
                     internship.append(dicto.copy())
 
 
