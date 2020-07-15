@@ -253,15 +253,16 @@ def report_generate():
     final_result['10th standard'].append({'Board': features['Education'][0]['10th standard'][1]})
     final_result['10th standard'].append({'Marks': features['Education'][0]['10th standard'][2]})
     final_result['10th standard'].append({'School name': features['Education'][0]['10th standard'][3]})
-    final_result['12th standard'] = [{'Year' : features['Education'][1]['12th standard'][0]}])
+    final_result['12th standard'] = [{'Year' : features['Education'][1]['12th standard'][0]}]
     final_result['12th standard'].append({'Board': features['Education'][1]['12th standard'][1]})
     final_result['12th standard'].append({'Marks': features['Education'][1]['12th standard'][2]})
-    final_result['12th standard'].append({'College name' :features['Education'][1]['12th standard'][3]}
+    final_result['12th standard'].append({'College name' :features['Education'][1]['12th standard'][3]})
     final_result['UG'] = [{'Year': features['Education'][2]['UG'][0]}]
     final_result['UG'] .append({'University': features['Education'][2]['UG'][1]})
     final_result['UG'].append({'CGPA': features['Education'][2]['UG'][2]})
     final_result['UG'].append({'College name': features['Education'][2]['UG'][3]})
-    final_result['Skills'] = features['result']
+    print(json.dumps(final_result,indent=2))
+    final_result['Skills'] = features['Skill']
     final_result['Hobbies'] = features['Hobbies']
     final_result['Achievement'] = features['Achievement']
     pcounter = 1
@@ -269,10 +270,10 @@ def report_generate():
         if key == 'Project':
             for i in value:
                 for key1, value1 in i.items():
-                        if pcounter == 1:
-                                final_result['Project']= [{f'Project_Title{pcounter}': key1}]
+                    if pcounter == 1:
+                            final_result['Project']= [{f'Project_Title{pcounter}': key1}]
                         else:
-                                final_result['Project'].append({f'Project_Title{pcounter}': key1}])
+                            final_result['Project'].append({f'Project_Title{pcounter}': key1})
                     pcounter += 1
                     for index,v in enumerate(value1):
                         if index == 0:
@@ -284,10 +285,10 @@ def report_generate():
         if key == 'Internship':
             for i in value:
                 for key1, value1 in i.items():
-                        if pcounter == 1:
-                                final_result['Internship'] = [{f'Internship_Title{pcounter}': key1}]
-                        else:
-                                final_result['Internship'].append({f'Internship_Title{pcounter}': key1}])
+                    if pcounter == 1:
+                        final_result['Internship'] = [{f'Internship_Title{pcounter}': key1}]
+                    else:
+                        final_result['Internship'].append({f'Internship_Title{pcounter}': key1})
                     pcounter += 1
                     for index,v in enumerate(value1):
                         if index == 0:
