@@ -249,19 +249,18 @@ def report_generate():
     final_result['name'] = features['username']
     final_result['email'] = features['_id']
     final_result['dob'] = features['dob']
-    print(final_result)
-    final_result['10th standard'] = {'Year': features['Education'][0]['10th standard'][0]}
-    final_result['10th standard'] = {'Board': features['Education'][0]['10th standard'][1]}
-    final_result['10th standard'] = {'Marks': features['Education'][0]['10th standard'][2]}
-    final_result['10th standard'] = {'School name': features['Education'][0]['10th standard'][3]}
-    final_result['12th standard'] = {'Year' : features['Education'][1]['12th standard'][0]}
-    final_result['12th standard'] = {'Board': features['Education'][1]['12th standard'][1]}
-    final_result['12th standard'] = {'Marks': features['Education'][1]['12th standard'][2]}
-    final_result['12th standard'] = {'College name' :features['Education'][1]['12th standard'][3]}
-    final_result['UG'] = {'Year': features['Education'][2]['UG'][0]}
-    final_result['UG'] = {'University': features['Education'][2]['UG'][1]}
-    final_result['UG'] = {'CGPA': features['Education'][2]['UG'][2]}
-    final_result['UG'] = {'College name': features['Education'][2]['UG'][3]}
+    final_result['10th standard'] = [{'Year': features['Education'][0]['10th standard'][0]}]
+    final_result['10th standard'].append({'Board': features['Education'][0]['10th standard'][1]})
+    final_result['10th standard'].append({'Marks': features['Education'][0]['10th standard'][2]})
+    final_result['10th standard'].append({'School name': features['Education'][0]['10th standard'][3]})
+    final_result['12th standard'] = [{'Year' : features['Education'][1]['12th standard'][0]}]
+    final_result['12th standard'].append({'Board': features['Education'][1]['12th standard'][1]})
+    final_result['12th standard'].append({'Marks': features['Education'][1]['12th standard'][2]})
+    final_result['12th standard'].append({'College name' :features['Education'][1]['12th standard'][3]})
+    final_result['UG'] = [{'Year': features['Education'][2]['UG'][0]}]
+    final_result['UG'].append({'University': features['Education'][2]['UG'][1]})
+    final_result['UG'].append({'CGPA': features['Education'][2]['UG'][2]})
+    final_result['UG'].append({'College name': features['Education'][2]['UG'][3]})
     final_result['Skills'] = features['Skill']
     final_result['Hobbies'] = features['Hobbies']
     final_result['Achievement'] = features['Achievement']
@@ -270,25 +269,31 @@ def report_generate():
         if key == 'Project':
             for i in value:
                 for key1, value1 in i.items():
-                    final_result['Project'] ={f'Project_Title{pcounter}': key1}
+                    if pcounter == 1:
+                            final_result['Project']= [{f'Project_Title{pcounter}': key1}]
+                    else:
+                            final_result['Project'].append({f'Project_Title{pcounter}': key1})
                     pcounter += 1
                     for index,v in enumerate(value1):
                         if index == 0:
-                            final_result['Project'] = {f'Project_tech{pcounter}':v}
+                            final_result['Project'].append({f'Project_tech{pcounter}':v})
                         else:
-                            final_result['Project'] = {f'Project_desc{pcounter}': v}
+                            final_result['Project'].append({f'Project_desc{pcounter}': v})
     pcounter = 1
     for key,value in features.items():
         if key == 'Internship':
             for i in value:
                 for key1, value1 in i.items():
-                    final_result['Internship'] = {f'Internship_Title{pcounter}': key1}
+                    if pcounter == 1:
+                            final_result['Internship'] = [{f'Internship_Title{pcounter}': key1}]
+                    else:
+                            final_result['Internship'].append({f'Internship_Title{pcounter}': key1})
                     pcounter += 1
                     for index,v in enumerate(value1):
                         if index == 0:
-                            final_result['Internship'] = {f'Duration{pcounter}': v}
+                            final_result['Internship'].append({f'Duration{pcounter}': v})
                         else:
-                            final_result['Intership'] = {f'Internship_desc{pcounter}': v}
+                            final_result['Internship'].append({f'Internship_desc{pcounter}': v})
 
     print(final_result)
     path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
