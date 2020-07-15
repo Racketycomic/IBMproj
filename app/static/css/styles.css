@@ -1,5 +1,5 @@
 
-  input[type=email], input[type=password], input[type=text] {
+  input[type=email], input[type=password], input[type=text]  {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -65,8 +65,7 @@
       margin-top: 0;
     }
   }
-
-  button[type=submit]{
+  button[type=submit] {
     background-color: #4CAF50;
     color: white;
     padding: 12px 20px;
@@ -74,7 +73,10 @@
     border-radius: 4px;
     cursor: pointer;
     float: right;
+    margin-top: 2px;
+  }
+
+  input[type=submit] {
     background-color: #45a049;
     margin-top: 1%;
-
   }

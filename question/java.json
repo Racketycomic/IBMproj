@@ -1,0 +1,123 @@
+java = [
+    {
+        "question_number":1,
+        "question":"What is the size of double variable?",
+        "options":["8bit","16bit","32bit","64bit"],
+        "answer":"64bit"
+},
+{
+    "question_number":2,
+    "question":"Under what conditions is an object's finalize() method invoked by the garbage collector?",
+    "options":["When it detects that the object has become unreachable.","As soon as object is set as null.","At fixed intervalm it checks for null value.","None of the above."],
+    "answer":"When it detects that the object has become unreachable."
+},
+{
+    "question_number":3,
+    "question":"What is a class in java?",
+    "options":["A class is a blue print from which individual objects are created. A class can contain fields and methods to describe the behavior of an object.","class is a special data type.","class is used to allocate memory to a data type.","none of the above."],
+    "answer":"A class is a blue print from which individual objects are created. A class can contain fields and methods to describe the behavior of an object."
+},
+{
+    "question_number":4,
+    "question":"Static binding uses which information for binding?",
+    "options":["type.","object.","Both of the above.","None of the above."],
+    "answer":"type."
+},
+{
+    "question_number":5,
+    "question":"What is the size of byte variable?",
+    "options":["8bit","16bit","32bit","64bit"],
+    "answer":"8bit"
+},
+{
+    "question_number":6,
+    "question":"What of the following is the default value of a local variable?",
+    "options":["null","0","Depends upon the type of variable","Not assigned"],
+    "answer":"Not assigned"
+},
+{
+    "question_number":7,
+    "question":"What is the default value of double variable?",
+    "options":["0.0d","0.0f","0","not defined"],
+    "answer":"0.0d"
+},
+{
+    "question_number":8,
+    "question":"What is inheritance?",
+    "options":["It is the process where one object acquires the properties of another.","inheritance is the ability of an object to take on many forms.","inheritance is a technique to define different methods of same type.","None of the above."],
+    "answer":"It is the process where one object acquires the properties of another."
+},
+{
+    "question_number":9,
+    "question":"Which of the following is true about super class?",
+    "options":["Variables, methods and constructors which are declared private can be accessed only by the members of the super class.","Variables, methods and constructors which are declared protected can be accessed by any subclass of the super class.","Variables, methods and constructors which are declared public in the superclass can be accessed by any class.","All of the above."],
+    "answer":"All of the above."
+},
+{
+    "question_number":10,
+    "question":"What is a marker interface?",
+    "options":["marker interface is an interface with no method.","marker interface is an interface with single method, mark().","marker interface is an interface with single method, marker().","none of the above."],
+    "answer":"marker interface is an interface with no method."
+},
+{
+    "question_number":11,
+    "question":"When finally block gets executed?",
+    "options":["Always when try block get executed, no matter exception occured or not.","Always when a method get executed, no matter exception occured or not.","Always when a try block get executed, if exception do not occur.","Only when exception occurs in try block code."],
+    "answer":"Always when try block get executed, no matter exception occured or not."
+},
+{
+    "question_number":12,
+    "question":"Which of the following is Faster, StringBuilder or StringBuffer?",
+    "options":["StringBuilder","StringBuffer","Both of the above.","none of the above."],
+    "answer":"StringBuilder"
+},
+{
+    "question_number":13,
+    "question":"Which of the following is not a keyword in java?",
+    "options":["static","Boolean","void","private"],
+    "answer":"Boolean"
+},
+{
+    "question_number":14,
+    "question":"This is the parent of Error and Exception classes.",
+    "options":["Throwable","Catchable","MainError","MainException"],
+    "answer":"Throwable"
+},
+{
+    "question_number":15,
+    "question":"What is correct syntax for main method of a java class?",
+    "options":["public static int main(String[] args)","public int main(String[] args)","public static void main(String[] args)","None of the above."],
+    "answer":"public static void main(String[] args)"
+},
+{
+    "question_number":16,
+    "question":"What is JRE?",
+    "options":["JRE is a java based GUI application.","JRE is an application development framework.","JRE is an implementation of the Java Virtual Machine which executes Java programs.","None of the above."],
+    "answer":"JRE is an implementation of the Java Virtual Machine which executes Java programs."
+},
+{
+    "question_number":17,
+    "question":"What is true about a final class?",
+    "options":["class declard final is a final class.","Final classes are created so the methods implemented by that class cannot be overridden.","It can't be inherited.","All of the above."],
+    "answer":"All of the above."
+},
+{
+    "question_number":18,
+    "question":"What is synchronization?",
+    "options":["Synchronization is the capability to control the access of multiple threads to shared resources.","Synchronization is the process of writing the state of an object to another object.","Synchronization is the process of writing the state of an object to byte stream.","None of the above."],
+    "answer":"Synchronization is the capability to control the access of multiple threads to shared resources."
+},
+{
+    "question_number":19,
+    "question":" In which case, a program is expected to recover?",
+    "options":["If an error occurs.","If an exception occurs.","Both of the above.","None of the above."],
+    "answer":"If an exception occurs."
+},
+{
+    "question_number":20,
+    "question":"Which of the following is true about private access modifier?",
+    "options":["Variables, methods and constructors which are declared private can be accessed only by the members of the same class.","Variables, methods and constructors which are declared private can be accessed by any class lying in same package.","Variables, methods and constructors which are declared private in the superclass can be accessed only by its child class.","None of the above."],
+    "answer":"Variables, methods and constructors which are declared private can be accessed only by the members of the same class."
+}
+
+]

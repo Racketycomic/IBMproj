@@ -1,0 +1,145 @@
+cpp=[{
+          "question_number":1,
+            "question": "A user defined header file is included by following statement in general.",
+            "options": ["#include “file.h”","#include <file.h>"," #include <file>","#include file.h"],
+            "answer": "#include “file.h"
+},
+{
+          "question_number":2,
+            "question": "In the following program f() is overloaded.
+            void f(int x) {
+
+            }
+
+            void f(signed x) {
+
+            }
+
+            main() {
+
+            }",
+            "options": ["True","False"],
+            "answer": "False"
+},
+{
+          "question_number":3,
+            "question": "What is the full form of RTTI.",
+            "options": ["Runtime type identification"," Runtime template identification","Robust Template Type Inheritance","None of the above."],
+            "answer": " Runtime type identification"
+},
+{
+          "question_number":4,
+            "question": "With respective to streams >> (operator) is called as",
+            "options": ["Insertion operator","Extraction operator","Right shift operator","Left shift operator"],
+            "answer": "Extraction operator"
+},
+{
+          "question_number":5,
+            "question": "An exception is __",
+            "options": ["Runtime error","Compile time error","Logical error","None of the above"],
+            "answer": "Runtime error"
+},
+{
+          "question_number":6,
+            "question": "What is the output of the following program?
+            #include<iostream>
+
+              using namespace std;
+              main() {
+                 int r, x = 2;
+
+                 float y = 5;
+
+                 r = y%x;
+                 cout<<r;
+              }",
+            "options": ["1","0","2","Compile error"],
+            "answer": "Compile error"
+},
+{
+          "question_number":7,
+            "question": "A single line comment in C++ language source code can begin with _____",
+            "options": [";",":","/*","//"],
+            "answer": "//"
+},
+{
+          "question_number":8,
+            "question": " i) Exceptions can be traced and controlled using conditional statements.
+                        ii) For critical exceptions compiler provides the handler",
+            "options": ["Only (i) is true","Only (ii) is true","Both (i) & (ii) are true","Both (i) && (ii) are false"],
+            "answer": "Only (ii) is true"
+},
+{
+          "question_number":9,
+            "question": "The explicit keyword is an optional decoration for the constructors that takes exactly_____argument.",
+            "options": ["No argument","Two","Three","One"],
+            "answer": "One"
+},
+{
+          "question_number":10,
+            "question": "A class can contain objects of other classes and this phenomenon is called_________ .",
+            "options": ["Relationship"," Object Association","Containership","None of these"],
+            "answer": "Containership"
+},
+{
+          "question_number":11,
+            "question": " If a class contains pure virtual function, then it is termed as____________________ .",
+            "options": ["Virtual class"," Sealed class"," Pure Local class","Abstract Class"],
+            "answer": "Abstract Class"
+},
+{
+          "question_number":12,
+            "question": " If inner catch handler is not able to handle the exception then__________ .",
+            "options": ["Compiler will look for outer try handler","Program terminates abnormally"," Compiler will check for appropriate catch handler of outer try block"," None of these"],
+            "answer": "Compiler will check for appropriate catch handler of outer try block"
+},
+{
+          "question_number":13,
+            "question": "Generic catch handler is represented by ______________ .",
+            "options": ["catch(..,)","catch(---)","catch(…)","catch( void x)"],
+            "answer": "catch(…)"
+},
+{
+          "question_number":14,
+            "question": "Which one is suitable syntax for function template?",
+            "options": ["template< class T> return_type Function_Name(parameters)","template< typename T> return_type Function_Name(parameters)"," both a and b","None of these"],
+            "answer": "both a and b"
+},
+{
+          "question_number":15,
+            "question": " While overloading binary operators using member function, it requires ___ argument/s.",
+            "options": ["Zero","One","Two","Three"],
+            "answer": "One"
+},
+{
+          "question_number":16,
+            "question": "If abstract class is inherited by derived class, then_______________ .",
+            "options": [" Derived class should provide definition for all the pure virtual functions","Derived class also become abstract if fails to implement pure virtual functions","Objects of derived class can’t be created if it fails to implement pure virtual functions","All of these"],
+            "answer": "All of these"
+},
+{
+          "question_number":17,
+            "question": "By default, all the files are opened in ___________mode .",
+            "options": ["Binary","Text"," Can’t say"],
+            "answer": "Text"
+},
+{
+          "question_number":18,
+            "question": "Generic catch handler must be placed at the end of all the catch handlers.",
+            "options": ["True","False"],
+            "answer": "True"
+},
+{
+          "question_number":19,
+            "question": "_________________are used for generic programming.",
+            "options": ["Inheritance","Virtual Functions","Templates","None of these"],
+            "answer": "Templates"
+},
+{
+          "question_number":20,
+            "question": "In CPP, cin and cout are the predefined stream __________ .",
+            "options": ["Operator","Functions","Objects","Data types"],
+            "answer": "Objects"
+}
+
+]

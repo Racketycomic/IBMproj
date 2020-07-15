@@ -2,6 +2,9 @@ from ibm_watson import AssistantV2 as ibma
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 import json
 
+
+
+
 apikey = "v7BXhz6ssuu6N47OyVmm8aOhWlegSPPw5PF4fjEmiM2h"
 authenticator = IAMAuthenticator(f'{apikey}')
 
@@ -23,35 +26,92 @@ msg = assistant.message(
     session_id=response['session_id'],
     input={
         'message_type': 'text',
-        'text': 'my name is Vinay S'
+        'text': 'hr',
+        'options' : {
+            'return_context': True
+        }
     },
-    context = {
-              "candidate_firstname": "Adithya M"
+    context= {
+               "skills":{
+                   "main skill": {
+                       "user_defined": {
+                           "flag": 1,
+                           "second_round": "Pass"
+                       }
+                   }
+               }
     }
-
-
 ).get_result()
 
 print(json.dumps(msg, indent=2))
 resultdict ={}
-for key1,value1 in msg.items():
+
+##respomse extraction
+arr = msg['output']['generic']
+print(arr)
+for i in arr:
+    for key4, value4 in i.items():
+        if key4 == 'text':
+            if 'response' in resultdict.keys():
+                resultdict['response'].append(value4)
+            else:
+                resultdict['response'] = [value4]
+
+print(resultdict)
+
+arr = msg['context']['skills']['main skill']['user_defined']
+print(arr)
+for key1, value1 in msg.items():
     if key1 == 'output':
         for key2, value2 in value1.items():
-            if key2 == 'entities':
-                for i in value2:
-                    for key3, value3 in i.items():
-                        if key3 == 'entity':
-                            skey = value3
-                        if key3 == 'value':
-                            svalue = value3
-                    resultdict[skey] = svalue
             if key2 == 'generic':
                 for i in value2:
-                    for key4,value4 in i.items():
+                    for key4, value4 in i.items():
                         if key4 == 'text':
                             if 'response' in resultdict.keys():
                                 resultdict['response'].append(value4)
                             else:
                                 resultdict['response'] = [value4]
 
+print(resultdict)
+result ={}
+###context variable extraction
+
+for key1, value1 in msg.items():
+    if key1 == 'context':
+        for key2, value2 in value1.items():
+            if key2 == 'skills':
+                for key3, value3 in value2.items():
+                    for key4, value4 in value3.items():
+                        for key5, value5 in value4.items():
+                            result[key5] = value5
+
+
+
+
+print(result)
+
+
 print(json.dumps(resultdict,indent =2))
+
+
+{
+  "output": {
+    "generic": [
+      {
+        "values": [
+          {
+            "text": " <ul><li>Enter the following Educational details for Std. XII  </li> \n <li>Year of completion</li> \n <li>Board/University</li> \n <li>Persentage/Grade</li><li>Institute name</li>\n P.S: Please seperate each data using commas and after entering please type \"Submit\" to proceed</ul> \n"
+          }
+        ],
+        "response_type": "text",
+        "selection_policy": "sequential"
+      }
+    ],
+    "context":{
+        "cand_result":{
+            "10th":"<? input.text?>"
+        }
+    }
+  }
+}
