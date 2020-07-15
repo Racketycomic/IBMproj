@@ -84,11 +84,11 @@
 <hr>
 
 <p>Personality Insights </p>
-<ul>{% for i in person %}
-    {% for i.values() %}
+<ul>
+    {% for key,value in person.items() %}
     <li>{{key}} : {{value}}</li>
     {% endfor %}<br>
-    {% endfor %}
+    
 </ul>
 
 

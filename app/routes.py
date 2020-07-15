@@ -178,7 +178,7 @@ def report_generate():
     final_result['Skills'] = features['Skill']
     final_result['Hobbies'] = features['Hobbies']
     final_result['Achievement'] = features['Achievement']
-    dicto={}
+    dicto1={}
     project =[]
     internship =[]
     person = []
@@ -210,9 +210,10 @@ def report_generate():
     for key,value in personality.items():
         if key == 'personality':
             for i in value:
-                for key1, value1 in i.items():
-                    dicto[value1[0]] = value1[1]
-                    person.append(dicto.copy())
+
+                dicto1[i["trait_name"]] = i["percentile"]
+    
+    print(dicto1)
     dicto = {}
     print(features.items())
     for key,value in features.items():
@@ -239,7 +240,7 @@ def report_generate():
     print(json.dumps(final_result,indent=2))
     path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
-    rendered = render_template('result.html', final_result = final_result, project=project, internship=internship, person = person)
+    rendered = render_template('result.html', final_result = final_result, project=project, internship=internship, person = dicto1)
     pdf = pdfkit.from_string(rendered, False, configuration=config)
     response = make_response(pdf)
     response.headers['Content-Type'] = 'application/pdf'
