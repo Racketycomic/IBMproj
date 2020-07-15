@@ -180,11 +180,19 @@ def report_generate():
     print(json.dumps(final_result,indent=2))
     final_result['Skills'] = features['Skill']
     final_result['Hobbies'] = features['Hobbies']
+<<<<<<< HEAD
     final_result['Achievement'] = features['Achievement']'''
     dicto={}
     project =[]
     internship =[]
     final_result = {}
+=======
+    final_result['Achievement'] = features['Achievement']
+    dicto1={}
+    project =[]
+    internship =[]
+    person = []
+>>>>>>> 751db594dfa710f274e776b84d4135ce8552bf9c
     personality = { "personality":[
           {
             "trait_name": "Openness",
@@ -208,7 +216,21 @@ def report_generate():
           }
         ]}
     final_result['personality'] = personality['personality']
+<<<<<<< HEAD
 
+=======
+    print(personality.items())
+
+    for key,value in personality.items():
+        if key == 'personality':
+            for i in value:
+
+                dicto1[i["trait_name"]] = i["percentile"]
+    
+    print(dicto1)
+    dicto = {}
+    print(features.items())
+>>>>>>> 751db594dfa710f274e776b84d4135ce8552bf9c
     for key,value in features.items():
         if key == 'Project':
             for i in value:
@@ -216,7 +238,7 @@ def report_generate():
                     dicto["project_title"] = key1
                     dicto["project_desc"] = value1[1]
                     dicto["project_tech"] = value1[0]
-                    project.append(dicto)
+                    project.append(dicto.copy())
 
     dicto ={}
     print(project)
@@ -227,12 +249,16 @@ def report_generate():
                     dicto["project_title"] = key1
                     dicto["project_desc"] = value1[1]
                     dicto["project_tech"] = value1[0]
-                    internship.append(dicto)
+                    internship.append(dicto.copy())
 
 
     path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
+<<<<<<< HEAD
     rendered = render_template('result1.html', final_result = features, project=project, internship=internship)
+=======
+    rendered = render_template('result.html', final_result = final_result, project=project, internship=internship, person = dicto1)
+>>>>>>> 751db594dfa710f274e776b84d4135ce8552bf9c
     pdf = pdfkit.from_string(rendered, False, configuration=config)
     response = make_response(pdf)
     response.headers['Content-Type'] = 'application/pdf'
