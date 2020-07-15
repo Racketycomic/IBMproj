@@ -258,10 +258,13 @@ def report_generate():
     final_result['12th standard'].append({'Marks': features['Education'][1]['12th standard'][2]})
     final_result['12th standard'].append({'College name' :features['Education'][1]['12th standard'][3]})
     final_result['UG'] = [{'Year': features['Education'][2]['UG'][0]}]
-    final_result['UG'] .append({'University': features['Education'][2]['UG'][1]})
+    final_result['UG'].append({'University': features['Education'][2]['UG'][1]})
     final_result['UG'].append({'CGPA': features['Education'][2]['UG'][2]})
     final_result['UG'].append({'College name': features['Education'][2]['UG'][3]})
+<<<<<<< HEAD
     print(json.dumps(final_result,indent=2))
+=======
+>>>>>>> 15f56e14c5b48992c3b972ef99d50633c2558cfb
     final_result['Skills'] = features['Skill']
     final_result['Hobbies'] = features['Hobbies']
     final_result['Achievement'] = features['Achievement']
@@ -272,7 +275,11 @@ def report_generate():
                 for key1, value1 in i.items():
                     if pcounter == 1:
                             final_result['Project']= [{f'Project_Title{pcounter}': key1}]
+<<<<<<< HEAD
                         else:
+=======
+                    else:
+>>>>>>> 15f56e14c5b48992c3b972ef99d50633c2558cfb
                             final_result['Project'].append({f'Project_Title{pcounter}': key1})
                     pcounter += 1
                     for index,v in enumerate(value1):
@@ -286,17 +293,23 @@ def report_generate():
             for i in value:
                 for key1, value1 in i.items():
                     if pcounter == 1:
+<<<<<<< HEAD
                         final_result['Internship'] = [{f'Internship_Title{pcounter}': key1}]
                     else:
                         final_result['Internship'].append({f'Internship_Title{pcounter}': key1})
+=======
+                            final_result['Internship'] = [{f'Internship_Title{pcounter}': key1}]
+                    else:
+                            final_result['Internship'].append({f'Internship_Title{pcounter}': key1})
+>>>>>>> 15f56e14c5b48992c3b972ef99d50633c2558cfb
                     pcounter += 1
                     for index,v in enumerate(value1):
                         if index == 0:
                             final_result['Internship'].append({f'Duration{pcounter}': v})
                         else:
-                            final_result['Intership'].append({f'Internship_desc{pcounter}': v})
+                            final_result['Internship'].append({f'Internship_desc{pcounter}': v})
 
-
+    print(final_result)
     path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
     rendered = render_template('result.html', final_result = final_result)
