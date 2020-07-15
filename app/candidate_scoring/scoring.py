@@ -100,7 +100,7 @@ def personality_insight(dicto,email):
         elif i["trait_name"]=="Emotional range" and (i["percentile"]>0.40 and i["percentile"]<0.75) :
             flag +=1
     if flag >= 4:
-        new_dicto={"Personality":dicto}
+        new_dicto = {"Personality": dicto}
         db.search_and_insert(email,'candidate_features',new_dicto,"single")
         return "Congratulations!, you have been shortlisted for the interview process, further information will be mailed to you."
     else:

@@ -55,6 +55,7 @@ def register():
         email = request.form['email']
         password = request.form['password']
         repass = request.form['repass']
+        phone = request.form['phone']
         doc = db.search_feature(email, "login_credentials")
         if len(doc) != 0:
             error = "The email already exists"
@@ -65,7 +66,7 @@ def register():
                 cdict = {'_id': email, 'username': username, 'password': hash,
                          'email': email}
                 db.insert_feature(cdict, 'login_credentials')
-                result = {'_id': session['user_id'], 'username': username, 'first_round_flag':'','test_link_share':''}
+                result = {'_id': session['user_id'], 'username': username, 'phone':phone ,'first_round_flag':'','test_link_share':''}
                 db.insert_feature(result, 'candidate_features')
                 return redirect('/login')
     return render_template('register.html')
@@ -102,6 +103,7 @@ def eval():
         result = {'_id': session['user_id']}
         flag = 'Fail'
         db.insert_feature(result, 'hr_question')
+
 
     print("SEEE THE SCORE HERE",str(score),str(final_score))
     print(flag)
@@ -179,24 +181,49 @@ def report_generate():
     dicto={}
     project =[]
     internship =[]
+    personality = { "personality":[
+          {
+            "trait_name": "Openness",
+            "percentile": 0.9986600458445904
+          },
+          {
+            "trait_name": "Conscientiousness",
+            "percentile": 0.4746155356228033
+          },
+          {
+            "trait_name": "Extraversion",
+            "percentile": 0.591073529309843
+          },
+          {
+            "trait_name": "Agreeableness",
+            "percentile": 0.07009747267117938
+          },
+          {
+            "trait_name": "Emotional range",
+            "percentile": 0.39857247303532706
+          }
+        ]}
+    final_result['personality'] = personality['personality']
+    
     for key,value in features.items():
         if key == 'Project':
             for i in value:
                 for key1, value1 in i.items():
-                    dicto["project_title"]=key1
-                    dicto["project_desc"]=value1[1]
-                    dicto["project_tech"]=value1[0]
-                    project.append(dicto.copy())
+                    dicto["project_title"] = key1
+                    dicto["project_desc"] = value1[1]
+                    dicto["project_tech"] = value1[0]
+                    project.append(dicto)
 
     dicto ={}
+    print(project)
     for key,value in features.items():
         if key == 'Internship':
             for i in value:
                 for key1, value1 in i.items():
-                    dicto["project_title"]=key1
-                    dicto["project_desc"]=value1[1]
-                    dicto["project_tech"]=value1[0]
-                    internship.append(dicto.copy())
+                    dicto["project_title"] = key1
+                    dicto["project_desc"] = value1[1]
+                    dicto["project_tech"] = value1[0]
+                    internship.append(dicto)
 
 
     print(json.dumps(final_result,indent=2))
