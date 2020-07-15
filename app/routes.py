@@ -156,95 +156,6 @@ def report_generate():
     print(res_str)
     insights_dict = pp.get_personality_insights(res_str)
     result_str = sc.personality_insight(insights_dict, session['user_id'])
-    features = {
-                "_id": "yondo@gmail.com",
-                "_rev": "40-d26758433c9ad24b6fd734ce68c2c6c9",
-                "username": "yondo",
-                "first_round_flag": "Pass",
-                "test_link_share": "http://127.0.0.1:5000/test",
-                "dob": "2020-03-04",
-                "Education": [
-                {
-                "10th standard": [
-                "2000",
-                "KSEEB",
-                90,
-                "Vidyanikethan Public school"
-                ]
-                },
-                {
-                "12th standard": [
-                "2002",
-                "KSEEB",
-                90,
-                "Narayana PU college"
-                ]
-                },
-                {
-                          "UG": [
-                            "2006",
-                            "VTU",
-                            9.5,
-                            "BNMIT"
-                          ]
-                        }
-                      ],
-                      "Skill": [
-                        "java",
-                        "python",
-                        "javascript"
-                      ],
-                      "Hobbies": [
-                        "Football",
-                        "Cricket",
-                        "Basketball",
-                        "Anime"
-                      ],
-                      "Project": [
-                        {
-                          "Project 1": [
-                            "JAVA",
-                            "Description 1"
-                          ]
-                        },
-                        {
-                          "Project 2": [
-                            "Python,AI,Machine Learning",
-                            "Description 2"
-                          ]
-                        },
-                        {
-                          "Project 3": [
-                            "JS,Machine Learning,Java,Python",
-                            "Description 3"
-                          ]
-                        }
-                      ],
-                      "Internship": [
-                        {
-                          "Amazon": [
-                            "3 months",
-                            "Description 1"
-                          ]
-                        },
-                        {
-                          "Google": [
-                            "3 months",
-                            "Description 2"
-                          ]
-                        },
-                        {
-                          "FaceBook": [
-                            "3 months",
-                            "Description 3"
-                          ]
-                        }
-                      ],
-                      "Achievement": [
-                        "Achievement1",
-                        "Achievement2"
-                      ]
-                    }
     final_result = {}
     final_result['name'] = features['username']
     final_result['email'] = features['_id']
@@ -261,58 +172,37 @@ def report_generate():
     final_result['UG'].append({'University': features['Education'][2]['UG'][1]})
     final_result['UG'].append({'CGPA': features['Education'][2]['UG'][2]})
     final_result['UG'].append({'College name': features['Education'][2]['UG'][3]})
-<<<<<<< HEAD
     print(json.dumps(final_result,indent=2))
-=======
->>>>>>> 15f56e14c5b48992c3b972ef99d50633c2558cfb
     final_result['Skills'] = features['Skill']
     final_result['Hobbies'] = features['Hobbies']
     final_result['Achievement'] = features['Achievement']
-    pcounter = 1
+    dicto={}
+    project =[]
+    internship =[]
     for key,value in features.items():
         if key == 'Project':
             for i in value:
                 for key1, value1 in i.items():
-                    if pcounter == 1:
-                            final_result['Project']= [{f'Project_Title{pcounter}': key1}]
-<<<<<<< HEAD
-                        else:
-=======
-                    else:
->>>>>>> 15f56e14c5b48992c3b972ef99d50633c2558cfb
-                            final_result['Project'].append({f'Project_Title{pcounter}': key1})
-                    pcounter += 1
-                    for index,v in enumerate(value1):
-                        if index == 0:
-                            final_result['Project'].append({f'Project_tech{pcounter}':v})
-                        else:
-                            final_result['Project'].append({f'Project_desc{pcounter}': v})
-    pcounter = 1
+                    dicto["project_title"]=key1
+                    dicto["project_desc"]=value1[1]
+                    dicto["project_tech"]=value1[0]
+                    project.append(dicto)
+
+    dicto ={}
     for key,value in features.items():
         if key == 'Internship':
             for i in value:
                 for key1, value1 in i.items():
-                    if pcounter == 1:
-<<<<<<< HEAD
-                        final_result['Internship'] = [{f'Internship_Title{pcounter}': key1}]
-                    else:
-                        final_result['Internship'].append({f'Internship_Title{pcounter}': key1})
-=======
-                            final_result['Internship'] = [{f'Internship_Title{pcounter}': key1}]
-                    else:
-                            final_result['Internship'].append({f'Internship_Title{pcounter}': key1})
->>>>>>> 15f56e14c5b48992c3b972ef99d50633c2558cfb
-                    pcounter += 1
-                    for index,v in enumerate(value1):
-                        if index == 0:
-                            final_result['Internship'].append({f'Duration{pcounter}': v})
-                        else:
-                            final_result['Internship'].append({f'Internship_desc{pcounter}': v})
+                    dicto["project_title"]=key1
+                    dicto["project_desc"]=value1[1]
+                    dicto["project_tech"]=value1[0]
+                    internship.append(dicto)
 
-    print(final_result)
+
+    print(json.dumps(final_result,indent=2))
     path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
-    rendered = render_template('result.html', final_result = final_result)
+    rendered = render_template('result.html', final_result = final_result, project=project, internship=internship)
     pdf = pdfkit.from_string(rendered, False, configuration=config)
     response = make_response(pdf)
     response.headers['Content-Type'] = 'application/pdf'
