@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,162 +6,82 @@
     <title>Document</title>
 </head>
 <body>
-    <table style="border: solid;" >
+    <table style="border: solid;">
+        <p>Basic details</p>
+        <ul> <li>Name : {{ final_result['name'] }}</li>
+            <li>Email : {{final_result['email']}}</li>
+            <li>Phone : phone here </li>
+        </ul>
+<hr>
+<p>Education</p>
+<ul>10th Standard
+    <li>School : {{final_result['10th standard'][3]['School name']}}</li>
+    <li>Passout : {{final_result['10th standard'][0]['Year']}}</li>
+    <li>Percentage : {{final_result['10th standard'][2]['Marks']}}</li>
+    <li>Board : {{final_result['10th standard'][1]['Board']}}</li>
+</ul>
 
-      <tbody style="border: solid;">
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Document</title>
-        </head>
-        <body>
-            <table style="border: solid;" >
+<ul>12th Standard
+    <li>College : {{final_result['12th standard'][3]['College name']}}</li>
+    <li>Passout : {{final_result['12th standard'][0]['Year']}}</li>
+    <li>Percentage : {{final_result['12th standard'][2]['Marks']}}</li>
+    <li>Board : {{final_result['12th standard'][1]['Board']}}</li>
+</ul>
 
-              <tbody style="border: solid;">
+<ul>BE
+    <li>Institute : {{final_result['UG'][3]['College name']}}</li>
+    <li>Passout : {{final_result['UG'][0]['Year']}}</li>
+    <li>Percentage : {{final_result['UG'][2]['CGPA']}}</li>
+    <li>Board : {{final_result['UG'][1]['University']}}</li>
+</ul>
+<hr>
 
-                    <tr style="border: solid;">
-                        <td style="border: solid;">Name</td>
-                        <td style="border: solid;">{{ final_result['name'] }}</td>
+<p>Skills</p>
+<ul>
+    {% for i in final_result['Skills'] %}
+    <li>{{i}}</li>
+    {% endfor %}
+</ul>
 
-                    </tr>
-          <tr style="border: solid;">
-                        <td style="border: solid;">Email</td>
-                        <td style="border: solid;">{{final_result['email']}}</td>
+<hr>
 
-                    </tr>
-         <tr style="border: solid;">
-                        <td style="border: solid;">Phone</td>
-                        <td style="border: solid;">Phone here</td>
+<p>Project</p>
+<ul>{% for i in project %}
+    {% for key,value in i.items() %}
+    <li>{{key}} : {{value}}</li>
+    {% endfor %}<br>
+    {% endfor %}
+</ul>
 
-                    </tr>
-         <tr style="border: solid;">
-                        <td style="border: solid;">10th std</td>
+<hr>
 
-                        <td style="border: solid;">School</td>
-                        <td style="border: solid;">{{final_result['10th standard'][3]['School name']}}</td>
+<p>Internships</p>
+<ul>{% for i in internship %}
+    {% for key,value in i.items() %}
+    <li>{{key}} : {{value}}</li>
+    {% endfor %}<br>
+    {% endfor %}
+</ul>
 
-            <tr>
-        <td ></td>
-        <td style="border: solid;">Passout</td>
-        <td style="border: solid;">{{final_result['10th standard'][0]['Year']}}</td>
+<hr>
 
+<p>Hobbies</p>
+<ul>
+    {% for i in final_result['Hobbies'] %}
+    <li>{{i}}</li>
+    {% endfor %}
+</ul>
 
+<hr>
 
-            </tr>
-        <tr>
-        <td></td>
-        <td style="border: solid;">Percentage</td>
-        <td style="border: solid;">{{final_result['10th standard'][2]['Marks']}}</td>
+<p>Achievements</p>
+<ul>
+    {% for i in final_result['Achievement'] %}
+    <li>{{i}}</li>
+    {% endfor %}
+</ul>
 
-            </tr>
-        <tr>
-        <td></td>
-        <td style="border: solid;">Board</td>
-        <td style="border: solid;">{{final_result['10th standard'][1]['Board']}}</td>
-
-            </tr>
-                    </tr>
-
-
-
-         <tr style="border: solid;">
-                        <td style="border: solid;">12th std</td>
-        <td style="border: solid;">College</td>
-        <td style="border: solid;">{{final_result['12th standard'][3]['College name']}}</td>
-
-            <tr>
-        <td ></td>
-        <td style="border: solid;">Passout</td>
-        <td style="border: solid;">{{final_result['12th standard'][0]['Year']}}</td>
-
-
-
-            </tr>
-        <tr>
-        <td></td>
-        <td style="border: solid;">Percentage</td>
-        <td style="border: solid;">{{final_result['12th standard'][2]['Marks']}}</td>
-
-            </tr>
-        <tr>
-        <td></td>
-        <td style="border: solid;">Board</td>
-        <td style="border: solid;">{{final_result['12th standard'][1]['Board']}}</td>
-
-            </tr>
-         <tr style="border: solid;">
-                        <td style="border: solid;">BE</td>
-        <td style="border: solid;">Institute</td>
-        <td style="border: solid;">{{final_result['UG'][3]['College name']}}</td>
-
-            <tr>
-        <td ></td>
-        <td style="border: solid;">Passout</td>
-        <td style="border: solid;">{{final_result['UG'][0]['Year']}}</td>
-
-
-
-            </tr>
-        <tr>
-        <td></td>
-        <td style="border: solid;">Percentage</td>
-        <td style="border: solid;">{{final_result['UG'][2]['CGPA']}}</td>
-
-            </tr>
-        <tr>
-        <td></td>
-        <td style="border: solid;">Board</td>
-        <td style="border: solid;">{{final_result['UG'][1]['University']}}</td>
-
-            </tr>
-
-         <tr style="border: solid;">
-                        <td style="border: solid;">Skills</td>
-                        {% for i in final_result['Skills'] %}
-                        <td style="border: solid;">{{i}}</td>
-                        {% endfor %}
-
-         </tr>
-              <tr style="border: solid;">
-                <td style="border: solid;">Hobbies</td>
-                {% for i in final_result['Hobbies'] %}
-                <td style="border: solid;">{{i}}</td>
-                {% endfor %}
-
-              </tr>
-              <tr style="border: solid;">
-                <td style="border: solid;">project</td>
-
-                {% for i in final_result['Project'] %}
-
-                <td style="border: solid;">project title</td>
-                <td style="border: solid;">{{list(i.keys())}}</td>
-              </tr>
-              <tr>
-                <td></td>
-
-                <td style="border: solid;">project tech</td>
-                <td style="border: solid;">{{list(i.values())[0]}}</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td style="border: solid;">project discr</td>
-                <td style="border: solid;">{{list(i.values())[1]}}</td>
-              </tr>
-              {% endfor %}
-
-                </tbody>
-            </table>
-        </body>
-        </html>
-
-
-
-
-
-        </tbody>
     </table>
 </body>
 </html>
+

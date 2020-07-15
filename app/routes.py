@@ -186,7 +186,7 @@ def report_generate():
                     dicto["project_title"]=key1
                     dicto["project_desc"]=value1[1]
                     dicto["project_tech"]=value1[0]
-                    project.append(dicto)
+                    project.append(dicto.copy())
 
     dicto ={}
     for key,value in features.items():
@@ -196,7 +196,7 @@ def report_generate():
                     dicto["project_title"]=key1
                     dicto["project_desc"]=value1[1]
                     dicto["project_tech"]=value1[0]
-                    internship.append(dicto)
+                    internship.append(dicto.copy())
 
 
     print(json.dumps(final_result,indent=2))
