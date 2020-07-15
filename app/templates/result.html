@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <table style="border: solid;">
+    
         <p>Basic details</p>
         <ul> <li>Name : {{ final_result['name'] }}</li>
             <li>Email : {{final_result['email']}}</li>
@@ -81,7 +81,17 @@
     {% endfor %}
 </ul>
 
-    </table>
+<hr>
+
+<p>Personality Insights </p>
+<ul>{% for i in person %}
+    {% for i.values() %}
+    <li>{{key}} : {{value}}</li>
+    {% endfor %}<br>
+    {% endfor %}
+</ul>
+
+
 </body>
 </html>
 

@@ -181,6 +181,7 @@ def report_generate():
     dicto={}
     project =[]
     internship =[]
+    person = []
     personality = { "personality":[
           {
             "trait_name": "Openness",
@@ -204,7 +205,16 @@ def report_generate():
           }
         ]}
     final_result['personality'] = personality['personality']
-    
+    print(personality.items())
+
+    for key,value in personality.items():
+        if key == 'personality':
+            for i in value:
+                for key1, value1 in i.items():
+                    dicto[value1[0]] = value1[1]
+                    person.append(dicto.copy())
+    dicto = {}
+    print(features.items())
     for key,value in features.items():
         if key == 'Project':
             for i in value:
@@ -212,7 +222,7 @@ def report_generate():
                     dicto["project_title"] = key1
                     dicto["project_desc"] = value1[1]
                     dicto["project_tech"] = value1[0]
-                    project.append(dicto)
+                    project.append(dicto.copy())
 
     dicto ={}
     print(project)
@@ -223,13 +233,13 @@ def report_generate():
                     dicto["project_title"] = key1
                     dicto["project_desc"] = value1[1]
                     dicto["project_tech"] = value1[0]
-                    internship.append(dicto)
+                    internship.append(dicto.copy())
 
 
     print(json.dumps(final_result,indent=2))
     path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
-    rendered = render_template('result.html', final_result = final_result, project=project, internship=internship)
+    rendered = render_template('result.html', final_result = final_result, project=project, internship=internship, person = person)
     pdf = pdfkit.from_string(rendered, False, configuration=config)
     response = make_response(pdf)
     response.headers['Content-Type'] = 'application/pdf'
