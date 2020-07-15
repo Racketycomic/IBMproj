@@ -199,7 +199,11 @@ def report_generate():
             for i in value:
                 for key1, value1 in i.items():
                     dicto["Title"] = key1
+<<<<<<< HEAD
                     dicto['Description'] = value1[1]
+=======
+                    dicto["Description"] = value1[1]
+>>>>>>> a54430198b52563ff192c833eeb403b8535fcfeb
                     dicto["Technology used"] = value1[0]
                     project.append(dicto.copy())
 
@@ -225,7 +229,7 @@ def report_generate():
     return(response)
 
 
-
+ 
 
 
 @app.route('/logout')
