@@ -172,7 +172,7 @@ def report_generate():
     final_result['UG']['University'] = features['Education'][2]['UG'][1]
     final_result['UG']['CGPA'] = features['Education'][2]['UG'][2]
     final_result['UG']['College name'] = features['Education'][2]['UG'][3]
-    final_result['Skills'] = features['result']
+    final_result['Skills'] = features['Skill']
     final_result['Hobbies'] = features['Hobbies']
     final_result['Achievement'] = features['Achievement']
     pcounter = 1
@@ -203,7 +203,7 @@ def report_generate():
 
     path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
-    rendered = render_template('result.html', features = final_result)
+    rendered = render_template('result.html', final_result = final_result)
     pdf = pdfkit.from_string(rendered, False, configuration=config)
     response = make_response(pdf)
     response.headers['Content-Type'] = 'application/pdf'
