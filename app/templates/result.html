@@ -4,34 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        li {
+            font-size: 25px;
+            font-style: normal;
+            }
+            p{
+                font-size: 29px;
+            }
+            #rep{
+                font-size: 31px;
+            }
+    </style>
 </head>
-<body>
-    
-        <p>Basic details</p>
-        <ul> <li>Name : {{ final_result['name'] }}</li>
+<body style="background-color:snow ;">
+<center><p id='rep'>Final Report</p> </center>
+       <p>Basic details</p> 
+        <ul><li>Name : {{ final_result['name'] }}</li>
             <li>Email : {{final_result['email']}}</li>
-            <li>Phone : phone here </li>
+            <li>Phone : {{features['phone']}} </li>
         </ul>
 <hr>
 <p>Education</p>
-<ul>10th Standard
+
+ <ul><p>10th Standard</p>
     <li>School : {{final_result['10th standard'][3]['School name']}}</li>
     <li>Passout : {{final_result['10th standard'][0]['Year']}}</li>
     <li>Percentage : {{final_result['10th standard'][2]['Marks']}}</li>
     <li>Board : {{final_result['10th standard'][1]['Board']}}</li>
 </ul>
 
-<ul>12th Standard
+<ul><p>12th Standard<p>
     <li>College : {{final_result['12th standard'][3]['College name']}}</li>
     <li>Passout : {{final_result['12th standard'][0]['Year']}}</li>
     <li>Percentage : {{final_result['12th standard'][2]['Marks']}}</li>
     <li>Board : {{final_result['12th standard'][1]['Board']}}</li>
 </ul>
 
-<ul>BE
+<ul><p> BE </p>
     <li>Institute : {{final_result['UG'][3]['College name']}}</li>
     <li>Passout : {{final_result['UG'][0]['Year']}}</li>
-    <li>Percentage : {{final_result['UG'][2]['CGPA']}}</li>
+    <li>CGPA : {{final_result['UG'][2]['CGPA']}}</li>
     <li>Board : {{final_result['UG'][1]['University']}}</li>
 </ul>
 <hr>
@@ -45,7 +58,7 @@
 
 <hr>
 
-<p>Project</p>
+ <p>Project</p>
 <ul>{% for i in project %}
     {% for key,value in i.items() %}
     <li>{{key}} : {{value}}</li>
@@ -55,26 +68,26 @@
 
 <hr>
 
-<p>Internships</p>
+ <p>Internships</p>
 <ul>{% for i in internship %}
     {% for key,value in i.items() %}
-    <li>{{key}} : {{value}}</li>
+     <li>{{key}} : {{value}}</li>
     {% endfor %}<br>
     {% endfor %}
 </ul>
 
 <hr>
 
-<p>Hobbies</p>
+ <p>Hobbies</p>
 <ul>
     {% for i in final_result['Hobbies'] %}
-    <li>{{i}}</li>
+     <li>{{i}}</li>
     {% endfor %}
 </ul>
 
 <hr>
 
-<p>Achievements</p>
+ <p>Achievements</p>
 <ul>
     {% for i in final_result['Achievement'] %}
     <li>{{i}}</li>
@@ -83,15 +96,23 @@
 
 <hr>
 
-<p>Personality Insights </p>
+ <p>Personality Insight</p>
 <ul>
     {% for key,value in person.items() %}
-    <li>{{key}} : {{value}}</li>
+     <li>{{key}} : {{value}}</li>
     {% endfor %}<br>
-    
+
 </ul>
+
+<hr>
+<p>Score</p>
+<ul>
+<li>Test Score : {{features['test_score']}}</li>
+<li>Resume Score : {{features['resume_score']}}</li>
+</ul>
+<hr>
+<h1>{{resultstring}}</h1>
 
 
 </body>
 </html>
-

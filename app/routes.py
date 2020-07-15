@@ -66,7 +66,7 @@ def register():
                 cdict = {'_id': email, 'username': username, 'password': hash,
                          'email': email}
                 db.insert_feature(cdict, 'login_credentials')
-                result = {'_id': session['user_id'], 'username': username, 'phone':phone ,'first_round_flag':'','test_link_share':''}
+                result = {'_id': email, 'username': username, 'phone':phone ,'first_round_flag':'','test_link_share':''}
                 db.insert_feature(result, 'candidate_features')
                 return redirect('/login')
     return render_template('register.html')
@@ -185,47 +185,22 @@ def report_generate():
     project =[]
     internship =[]
     person = []
-    personality = { "personality":[
-          {
-            "trait_name": "Openness",
-            "percentile": 0.9986600458445904
-          },
-          {
-            "trait_name": "Conscientiousness",
-            "percentile": 0.4746155356228033
-          },
-          {
-            "trait_name": "Extraversion",
-            "percentile": 0.591073529309843
-          },
-          {
-            "trait_name": "Agreeableness",
-            "percentile": 0.07009747267117938
-          },
-          {
-            "trait_name": "Emotional range",
-            "percentile": 0.39857247303532706
-          }
-        ]}
-    final_result['personality'] = personality['personality']
-    print(personality.items())
 
-    for key,value in personality.items():
-        if key == 'personality':
+    for key,value in features.items():
+        if key == 'Personality':
             for i in value:
-
                 dicto1[i["trait_name"]] = i["percentile"]
-    
-    print(dicto1)
+
+
     dicto = {}
     print(features.items())
     for key,value in features.items():
         if key == 'Project':
             for i in value:
                 for key1, value1 in i.items():
-                    dicto["project_title"] = key1
-                    dicto["project_desc"] = value1[1]
-                    dicto["project_tech"] = value1[0]
+                    dicto["Title"] = key1
+                    dicto["Description"] = value1[1]
+                    dicto["Technology used"] = value1[0]
                     project.append(dicto.copy())
 
     dicto ={}
@@ -234,20 +209,23 @@ def report_generate():
         if key == 'Internship':
             for i in value:
                 for key1, value1 in i.items():
-                    dicto["project_title"] = key1
-                    dicto["project_desc"] = value1[1]
-                    dicto["project_tech"] = value1[0]
+                    dicto["Organization name"] = key1
+                    dicto["Description"] = value1[1]
+                    dicto["Duration"] = value1[0]
                     internship.append(dicto.copy())
 
 
     path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
-    rendered = render_template('result.html', final_result = final_result, project=project, internship=internship, person = dicto1)
+    rendered = render_template('result.html', final_result = final_result, project=project, internship=internship, person = dicto1,resultstring = result_str,features = features)
     pdf = pdfkit.from_string(rendered, False, configuration=config)
     response = make_response(pdf)
     response.headers['Content-Type'] = 'application/pdf'
     response.headers['Content-Disposition'] = f"attachement; filename = {features['_id']}.pdf"
     return(response)
+
+
+ 
 
 
 @app.route('/logout')
@@ -270,8 +248,6 @@ def handle_send_message(data):
           "\nSession_id:" + data['session_id'])
     socketio.emit('1st_message',data, room = data['session_id'])
     data1 = hand.server_convo_handler(data, session['user_id'])
-    global counter
-    counter += 1
     socketio.emit('recieve_message', data1, room=data['session_id'])
 
 @socketio.on('send_message2')

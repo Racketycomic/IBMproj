@@ -131,14 +131,14 @@ class convo_handler():
                 return data1
             else:
                 result_dict = {'Achievement': contextvariable['cand_result']['Achievement']}
-                db.search_and_insert(email, 'candidate_features', result_dict, flag ='single')
+                db.search_and_insert(email, 'candidate_features', result_dict, flag ='double')
                 data1 = unpack_response(response, data)
                 return data1
         else:
             data1 = unpack_response(response, data)
             return data1
 
-        
+
     def second_conversation(self, data, email):
 
         assistant = wh.get_assistant()

@@ -8,9 +8,11 @@ class extractor():
             for key4, value4 in i.items():
                 if key4 == 'text':
                     if 'response' in resultdict.keys():
-                        resultdict['response'].append(value4)
+                        if len(value4) != 0:
+                            resultdict['response'].append(value4)
                     else:
-                        resultdict['response'] = [value4]
+                        if len(value4) != 0:
+                            resultdict['response'] = [value4]
         return resultdict
 
     def context_variable_extractor(self, msg):

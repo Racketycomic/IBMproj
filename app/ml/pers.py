@@ -29,4 +29,4 @@ for i in profile['personality']:
     print(i['name'])
     pseudo_dict['percentile'] = i['percentile']
     res.append(pseudo_dict)
-print(res)
+print(json.dumps(res,indent=2))
