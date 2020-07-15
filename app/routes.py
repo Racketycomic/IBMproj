@@ -95,6 +95,8 @@ def eval():
         if q1 == questions[i]['answer']:
             score += 1
     final_score = sc.totalscoring(session['user_id'])
+    result_dict = {'test_score':score,'resume_score':final_score}
+    db.search_and_insert(session['user_id'], 'candidate_features', result_dict, flag='single')
     if final_score > 1500:
         result = {'_id': session['user_id']}
         flag = 'Pass'
@@ -158,9 +160,10 @@ def report_generate():
     print(res_str)
     insights_dict = pp.get_personality_insights(res_str)
     result_str = sc.personality_insight(insights_dict, session['user_id'])
-    final_result = {}
-    final_result['name'] = features['username']
+    '''final_result = {}
     final_result['email'] = features['_id']
+    final_result['name'] = features['username']
+
     final_result['dob'] = features['dob']
     final_result['10th standard'] = [{'Year': features['Education'][0]['10th standard'][0]}]
     final_result['10th standard'].append({'Board': features['Education'][0]['10th standard'][1]})
@@ -177,10 +180,11 @@ def report_generate():
     print(json.dumps(final_result,indent=2))
     final_result['Skills'] = features['Skill']
     final_result['Hobbies'] = features['Hobbies']
-    final_result['Achievement'] = features['Achievement']
+    final_result['Achievement'] = features['Achievement']'''
     dicto={}
     project =[]
     internship =[]
+    final_result = {}
     personality = { "personality":[
           {
             "trait_name": "Openness",
@@ -204,7 +208,7 @@ def report_generate():
           }
         ]}
     final_result['personality'] = personality['personality']
-    
+
     for key,value in features.items():
         if key == 'Project':
             for i in value:
@@ -226,10 +230,9 @@ def report_generate():
                     internship.append(dicto)
 
 
-    print(json.dumps(final_result,indent=2))
     path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
-    rendered = render_template('result.html', final_result = final_result, project=project, internship=internship)
+    rendered = render_template('result1.html', final_result = features, project=project, internship=internship)
     pdf = pdfkit.from_string(rendered, False, configuration=config)
     response = make_response(pdf)
     response.headers['Content-Type'] = 'application/pdf'

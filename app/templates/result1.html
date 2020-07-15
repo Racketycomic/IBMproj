@@ -24,12 +24,12 @@
 
                     <tr style="border: solid;">
                         <td style="border: solid;">Name</td>
-                        <td style="border: solid;">{{ final_result['name'] }}</td>
+                        <td style="border: solid;">{{ final_result['username'] }}</td>
 
                     </tr>
           <tr style="border: solid;">
                         <td style="border: solid;">Email</td>
-                        <td style="border: solid;">{{final_result['email']}}</td>
+                        <td style="border: solid;">{{final_result['_id']}}</td>
 
                     </tr>
          <tr style="border: solid;">
@@ -41,7 +41,7 @@
                         <td style="border: solid;">10th std</td>
 
                         <td style="border: solid;">School</td>
-                        <td style="border: solid;">{{final_result['10th standard'][3]['School name']}}</td>
+                        <td style="border: solid;">{{final_result['Education'][0]['10th standard'][3]}}</td>
 
             <tr>
         <td ></td>
@@ -54,13 +54,13 @@
         <tr>
         <td></td>
         <td style="border: solid;">Percentage</td>
-        <td style="border: solid;">{{final_result['10th standard'][2]['Marks']}}</td>
+        <td style="border: solid;">{{final_result['Education'][0]['10th standard'][2]}}</td>
 
             </tr>
         <tr>
         <td></td>
         <td style="border: solid;">Board</td>
-        <td style="border: solid;">{{final_result['10th standard'][1]['Board']}}</td>
+        <td style="border: solid;">{{final_result['Education'][0]['10th standard'][1]}}</td>
 
             </tr>
                     </tr>
@@ -70,12 +70,12 @@
          <tr style="border: solid;">
                         <td style="border: solid;">12th std</td>
         <td style="border: solid;">College</td>
-        <td style="border: solid;">{{final_result['12th standard'][3]['College name']}}</td>
+        <td style="border: solid;">{{final_result['Education'][1]['12th standard'][3]}}</td>
 
             <tr>
         <td ></td>
         <td style="border: solid;">Passout</td>
-        <td style="border: solid;">{{final_result['12th standard'][0]['Year']}}</td>
+        <td style="border: solid;">{{final_result['Education'][1]['12th standard'][0]}}</td>
 
 
 
@@ -83,24 +83,24 @@
         <tr>
         <td></td>
         <td style="border: solid;">Percentage</td>
-        <td style="border: solid;">{{final_result['12th standard'][2]['Marks']}}</td>
+        <td style="border: solid;">{{final_result['Education'][1]['12th standard'][2]}}</td>
 
             </tr>
         <tr>
         <td></td>
         <td style="border: solid;">Board</td>
-        <td style="border: solid;">{{final_result['12th standard'][1]['Board']}}</td>
+        <td style="border: solid;">{{final_result['Education'][1]['12th standard'][1]}}</td>
 
             </tr>
          <tr style="border: solid;">
                         <td style="border: solid;">BE</td>
         <td style="border: solid;">Institute</td>
-        <td style="border: solid;">{{final_result['UG'][3]['College name']}}</td>
+        <td style="border: solid;">{{final_result['Education'][2]['UG'][3]}}</td>
 
             <tr>
         <td ></td>
         <td style="border: solid;">Passout</td>
-        <td style="border: solid;">{{final_result['UG'][0]['Year']}}</td>
+        <td style="border: solid;">{{final_result['Education'][2]['UG'][0]}}</td>
 
 
 
@@ -108,13 +108,13 @@
         <tr>
         <td></td>
         <td style="border: solid;">Percentage</td>
-        <td style="border: solid;">{{final_result['UG'][2]['CGPA']}}</td>
+        <td style="border: solid;">{{final_result['Education'][2]['UG'][2]}}</td>
 
             </tr>
         <tr>
         <td></td>
         <td style="border: solid;">Board</td>
-        <td style="border: solid;">{{final_result['UG'][1]['University']}}</td>
+        <td style="border: solid;">{{final_result['Education'][2]['UG'][1]}}</td>
 
             </tr>
 
@@ -132,26 +132,26 @@
                 {% endfor %}
 
               </tr>
-           
-        
-            
+
+
+
               <tr style="border: solid;">
                 {% for i in project %}
                 {% for key,value in i.items() %}
                 <td style="border: solid;">project</td>
-               
-              
+
+
                 <td style="border: solid;">{{key}}</td>
                 <td style="border: solid;">{{value}}</td>
             </tr>
-                
+
             {% endfor %}
                 {% endfor %}
-                
-            
-              
+
+
+
             </tbody>
-        </table>  
+        </table>
         <ul><p>project</p>
             {% for i in project %}
             {% for key,value in i.items() %}
