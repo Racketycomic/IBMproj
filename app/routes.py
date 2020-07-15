@@ -14,11 +14,10 @@ import pdfkit
 
 db = crud()
 cand = {}
-counter = 1
 hand = convo_handler()
 wh = watsonhandler()
 socketio = SocketIO(app)
-first_round_flag = ''
+
 
 @app.route('/')
 @app.route('/index', methods=['POST', 'GET'])
@@ -145,8 +144,8 @@ def testing():
 
 @app.route('/result', methods=['POST', 'GET'])
 def report_generate():
-    init_doc = db.search_feature(session['user_id'],'hr_question')
-    features = db.search_feature(session['user_id'],'candidate_features')
+    init_doc = db.search_feature(session['user_id'], 'hr_question')
+    features = db.search_feature(session['user_id'], 'candidate_features')
     res_str = ''
     for i in range(len(init_doc)):
         try:
@@ -157,17 +156,60 @@ def report_generate():
     print(res_str)
     insights_dict = pp.get_personality_insights(res_str)
     result_str = sc.personality_insight(insights_dict, session['user_id'])
-    del features['_rev']
-    del features['first_round_flag']
-    del features['test_link_share']
+    final_result = {}
+    final_result['name'] = features['username']
+    final_result['email'] = features['_id']
+    final_result['dob'] = features['dob']
+    final_result['10th standard']['Year'] = features['Education'][0]['10th standard'][0]
+    final_result['10th standard']['Board'] = features['Education'][0]['10th standard'][1]
+    final_result['10th standard']['Marks'] = features['Education'][0]['10th standard'][2]
+    final_result['10th standard']['School name'] = features['Education'][0]['10th standard'][3]
+    final_result['12th standard']['Year'] = features['Education'][1]['12th standard'][0]
+    final_result['12th standard']['Board'] = features['Education'][1]['12th standard'][1]
+    final_result['12th standard']['Marks'] = features['Education'][1]['12th standard'][2]
+    final_result['12th standard']['College name'] = features['Education'][1]['12th standard'][3]
+    final_result['UG']['Year'] = features['Education'][2]['UG'][0]
+    final_result['UG']['University'] = features['Education'][2]['UG'][1]
+    final_result['UG']['CGPA'] = features['Education'][2]['UG'][2]
+    final_result['UG']['College name'] = features['Education'][2]['UG'][3]
+    final_result['Skills'] = features['result']
+    final_result['Hobbies'] = features['Hobbies']
+    final_result['Achievement'] = features['Achievement']
+    pcounter = 1
+    for key,value in features.items():
+        if key == 'Project':
+            for i in value:
+                for key1, value1 in i.items():
+                    final_result['Project'][f'Project_Title{pcounter}'] = key1
+                    pcounter += 1
+                    for index,v in enumerate(value1):
+                        if index == 0:
+                            final_result['Project'][f'Project_tech{pcounter}'] = v
+                        else:
+                            final_result['Project'][f'Project_desc{pcounter}'] = v
+    pcounter = 1
+    for key,value in features.items():
+        if key == 'Internship':
+            for i in value:
+                for key1, value1 in i.items():
+                    final_result['Project'][f'Internship_Title{pcounter}'] = key1
+                    pcounter += 1
+                    for index,v in enumerate(value1):
+                        if index == 0:
+                            final_result['Project'][f'Duration{pcounter}'] = v
+                        else:
+                            final_result['Project'][f'Internship_desc{pcounter}'] = v
+
+
     path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
-    rendered = render_template('result.html', features = features)
+    rendered = render_template('result.html', features = final_result)
     pdf = pdfkit.from_string(rendered, False, configuration=config)
     response = make_response(pdf)
     response.headers['Content-Type'] = 'application/pdf'
     response.headers['Content-Disposition'] = f"attachement; filename = {features['_id']}.pdf"
     return(response)
+
 
 @app.route('/logout')
 def logout():
@@ -200,6 +242,4 @@ def handle_send_message(data):
     socketio.emit('1st_message',data, room = data['session_id'])
     data1 = hand.second_conversation(data, session['user_id'])
     print("Inside msg2")
-    global counter
-    counter += 1
     socketio.emit('recieve_message', data1, room=data['session_id'])
