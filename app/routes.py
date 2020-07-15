@@ -249,7 +249,6 @@ def report_generate():
     final_result['name'] = features['username']
     final_result['email'] = features['_id']
     final_result['dob'] = features['dob']
-<<<<<<< HEAD
     print(final_result)
     final_result['10th standard'] = {'Year': features['Education'][0]['10th standard'][0]}
     final_result['10th standard'] = {'Board': features['Education'][0]['10th standard'][1]}
@@ -264,21 +263,6 @@ def report_generate():
     final_result['UG'] = {'CGPA': features['Education'][2]['UG'][2]}
     final_result['UG'] = {'College name': features['Education'][2]['UG'][3]}
     final_result['Skills'] = features['result']
-=======
-    final_result['10th standard']['Year'] = features['Education'][0]['10th standard'][0]
-    final_result['10th standard']['Board'] = features['Education'][0]['10th standard'][1]
-    final_result['10th standard']['Marks'] = features['Education'][0]['10th standard'][2]
-    final_result['10th standard']['School name'] = features['Education'][0]['10th standard'][3]
-    final_result['12th standard']['Year'] = features['Education'][1]['12th standard'][0]
-    final_result['12th standard']['Board'] = features['Education'][1]['12th standard'][1]
-    final_result['12th standard']['Marks'] = features['Education'][1]['12th standard'][2]
-    final_result['12th standard']['College name'] = features['Education'][1]['12th standard'][3]
-    final_result['UG']['Year'] = features['Education'][2]['UG'][0]
-    final_result['UG']['University'] = features['Education'][2]['UG'][1]
-    final_result['UG']['CGPA'] = features['Education'][2]['UG'][2]
-    final_result['UG']['College name'] = features['Education'][2]['UG'][3]
-    final_result['Skills'] = features['Skill']
->>>>>>> 27e4e31b8d7687d64911815d39c27678e9ae20d4
     final_result['Hobbies'] = features['Hobbies']
     final_result['Achievement'] = features['Achievement']
     pcounter = 1
