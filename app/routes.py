@@ -156,22 +156,112 @@ def report_generate():
     print(res_str)
     insights_dict = pp.get_personality_insights(res_str)
     result_str = sc.personality_insight(insights_dict, session['user_id'])
+    features = {
+                "_id": "yondo@gmail.com",
+                "_rev": "40-d26758433c9ad24b6fd734ce68c2c6c9",
+                "username": "yondo",
+                "first_round_flag": "Pass",
+                "test_link_share": "http://127.0.0.1:5000/test",
+                "dob": "2020-03-04",
+                "Education": [
+                {
+                "10th standard": [
+                "2000",
+                "KSEEB",
+                90,
+                "Vidyanikethan Public school"
+                ]
+                },
+                {
+                "12th standard": [
+                "2002",
+                "KSEEB",
+                90,
+                "Narayana PU college"
+                ]
+                },
+                {
+                          "UG": [
+                            "2006",
+                            "VTU",
+                            9.5,
+                            "BNMIT"
+                          ]
+                        }
+                      ],
+                      "Skill": [
+                        "java",
+                        "python",
+                        "javascript"
+                      ],
+                      "Hobbies": [
+                        "Football",
+                        "Cricket",
+                        "Basketball",
+                        "Anime"
+                      ],
+                      "Project": [
+                        {
+                          "Project 1": [
+                            "JAVA",
+                            "Description 1"
+                          ]
+                        },
+                        {
+                          "Project 2": [
+                            "Python,AI,Machine Learning",
+                            "Description 2"
+                          ]
+                        },
+                        {
+                          "Project 3": [
+                            "JS,Machine Learning,Java,Python",
+                            "Description 3"
+                          ]
+                        }
+                      ],
+                      "Internship": [
+                        {
+                          "Amazon": [
+                            "3 months",
+                            "Description 1"
+                          ]
+                        },
+                        {
+                          "Google": [
+                            "3 months",
+                            "Description 2"
+                          ]
+                        },
+                        {
+                          "FaceBook": [
+                            "3 months",
+                            "Description 3"
+                          ]
+                        }
+                      ],
+                      "Achievement": [
+                        "Achievement1",
+                        "Achievement2"
+                      ]
+                    }
     final_result = {}
     final_result['name'] = features['username']
     final_result['email'] = features['_id']
     final_result['dob'] = features['dob']
-    final_result['10th standard']['Year'] = features['Education'][0]['10th standard'][0]
-    final_result['10th standard']['Board'] = features['Education'][0]['10th standard'][1]
-    final_result['10th standard']['Marks'] = features['Education'][0]['10th standard'][2]
-    final_result['10th standard']['School name'] = features['Education'][0]['10th standard'][3]
-    final_result['12th standard']['Year'] = features['Education'][1]['12th standard'][0]
-    final_result['12th standard']['Board'] = features['Education'][1]['12th standard'][1]
-    final_result['12th standard']['Marks'] = features['Education'][1]['12th standard'][2]
-    final_result['12th standard']['College name'] = features['Education'][1]['12th standard'][3]
-    final_result['UG']['Year'] = features['Education'][2]['UG'][0]
-    final_result['UG']['University'] = features['Education'][2]['UG'][1]
-    final_result['UG']['CGPA'] = features['Education'][2]['UG'][2]
-    final_result['UG']['College name'] = features['Education'][2]['UG'][3]
+    print(final_result)
+    final_result['10th standard'] = {'Year': features['Education'][0]['10th standard'][0]}
+    final_result['10th standard'] = {'Board': features['Education'][0]['10th standard'][1]}
+    final_result['10th standard'] = {'Marks': features['Education'][0]['10th standard'][2]}
+    final_result['10th standard'] = {'School name': features['Education'][0]['10th standard'][3]}
+    final_result['12th standard'] = {'Year' : features['Education'][1]['12th standard'][0]}
+    final_result['12th standard'] = {'Board': features['Education'][1]['12th standard'][1]}
+    final_result['12th standard'] = {'Marks': features['Education'][1]['12th standard'][2]}
+    final_result['12th standard'] = {'College name' :features['Education'][1]['12th standard'][3]}
+    final_result['UG'] = {'Year': features['Education'][2]['UG'][0]}
+    final_result['UG'] = {'University': features['Education'][2]['UG'][1]}
+    final_result['UG'] = {'CGPA': features['Education'][2]['UG'][2]}
+    final_result['UG'] = {'College name': features['Education'][2]['UG'][3]}
     final_result['Skills'] = features['result']
     final_result['Hobbies'] = features['Hobbies']
     final_result['Achievement'] = features['Achievement']
@@ -180,25 +270,25 @@ def report_generate():
         if key == 'Project':
             for i in value:
                 for key1, value1 in i.items():
-                    final_result['Project'][f'Project_Title{pcounter}'] = key1
+                    final_result['Project'] ={f'Project_Title{pcounter}': key1}
                     pcounter += 1
                     for index,v in enumerate(value1):
                         if index == 0:
-                            final_result['Project'][f'Project_tech{pcounter}'] = v
+                            final_result['Project'] = {f'Project_tech{pcounter}':v}
                         else:
-                            final_result['Project'][f'Project_desc{pcounter}'] = v
+                            final_result['Project'] = {f'Project_desc{pcounter}': v}
     pcounter = 1
     for key,value in features.items():
         if key == 'Internship':
             for i in value:
                 for key1, value1 in i.items():
-                    final_result['Project'][f'Internship_Title{pcounter}'] = key1
+                    final_result['Internship'] = {f'Internship_Title{pcounter}': key1}
                     pcounter += 1
                     for index,v in enumerate(value1):
                         if index == 0:
-                            final_result['Project'][f'Duration{pcounter}'] = v
+                            final_result['Internship'] = {f'Duration{pcounter}': v}
                         else:
-                            final_result['Project'][f'Internship_desc{pcounter}'] = v
+                            final_result['Intership'] = {f'Internship_desc{pcounter}': v}
 
 
     path_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
