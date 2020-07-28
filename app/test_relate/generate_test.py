@@ -5,7 +5,8 @@ import random
 def gettestdata(key, dbname, c):
     db = crud()
     doc = db.search_feature(key, 'test_question')
-
+    print(type(doc))
+    print(doc)
     l = doc['questions']
     shuffled_doc = random.sample(l, k=c)
     doc = shuffled_doc
@@ -17,16 +18,17 @@ def gettest(username):
     db = crud()
     doc = []
     docfinal = []
+    skillss = []
     dicto = {}
     skill = ["c", "cpp", "c++", "java", "python"]
     dicto = db.search_feature(username, 'candidate_features')
 
     skills = dicto["Skill"]
-
     for i in skills:
-        if i not in skill:
-            skills.remove(i)
-    length = len(skills)
+        if i in skill:
+            skillss.append(i)
+    length = len(skillss)
+
 
     if length == 4:
         doc = gettestdata("C", 'test_question', 5)
@@ -37,7 +39,7 @@ def gettest(username):
         return (docfinal)
     elif length == 3:
         j = 0
-        for i in skills:
+        for i in skillss:
             if j == 12:
                 if i == "c":
                     doc = gettestdata("C", 'test_question', 8)
@@ -60,7 +62,7 @@ def gettest(username):
             docfinal += doc
         return (docfinal)
     elif length == 2:
-        for i in skills:
+        for i in skillss:
             if i == "c":
                 doc = gettestdata("C", 'test_question', 10)
             elif i == "cpp" or i == "c++":
@@ -72,5 +74,5 @@ def gettest(username):
             docfinal += doc
         return (docfinal)
     else:
-        doc = gettestdata(skills[0], 'test_question', 20)
+        doc = gettestdata(skillss[0], 'test_question', 20)
         return doc
