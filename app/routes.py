@@ -97,7 +97,7 @@ def eval():
     final_score = sc.totalscoring(session['user_id'])
     result_dict = {'test_score':score,'resume_score':final_score}
     db.search_and_insert(session['user_id'], 'candidate_features', result_dict, flag='single')
-    if final_score > 1500:
+    if final_score > 1850 and score > 15:
         result = {'_id': session['user_id']}
         flag = 'Pass'
         db.insert_feature(result, 'hr_question')
