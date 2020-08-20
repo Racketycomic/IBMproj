@@ -97,7 +97,7 @@ def eval():
     final_score = sc.totalscoring(session['user_id'])
     result_dict = {'test_score':score,'resume_score':final_score}
     db.search_and_insert(session['user_id'], 'candidate_features', result_dict, flag='single')
-    if final_score > 1500:
+    if final_score > 1850 and score > 15:
         result = {'_id': session['user_id']}
         flag = 'Pass'
         db.insert_feature(result, 'hr_question')
@@ -199,11 +199,7 @@ def report_generate():
             for i in value:
                 for key1, value1 in i.items():
                     dicto["Title"] = key1
-<<<<<<< HEAD
-                    dicto['Description'] = value1[1]
-=======
                     dicto["Description"] = value1[1]
->>>>>>> a54430198b52563ff192c833eeb403b8535fcfeb
                     dicto["Technology used"] = value1[0]
                     project.append(dicto.copy())
 
@@ -229,7 +225,7 @@ def report_generate():
     return(response)
 
 
- 
+
 
 
 @app.route('/logout')
