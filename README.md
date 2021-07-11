@@ -1,4 +1,4 @@
-# SBSPS-Challenge-3524-REBOS-Recruitment-Bot-for-Online-Selection-
+REBOS-Recruitment-Bot-for-Online-Selection-
 
 Exsisting Problem:
 
